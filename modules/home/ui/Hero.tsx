@@ -35,7 +35,7 @@ const Hero = () => {
                     />
                 </div>
                 <div className="hero-sticker"><BiHeart /><span>made<br />with love</span></div>
-                <div className="hero-caption"><span>01 / 03</span> A very good reason to celebrate</div>
+                <div className="hero-caption"> A very good reason to celebrate</div>
             </div>
             <div className="hero-side-note">FRESH FROM OUR LITTLE OVEN · EST. 2021</div>
         </section>

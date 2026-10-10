@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { BsArrowRight } from "react-icons/bs";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,7 +38,7 @@ export default function Navbar() {
           target="_blank"
           rel="noreferrer"
         >
-          Order on WhatsApp <span aria-hidden="true">↗</span>
+          Order on WhatsApp
         </a>
         <button
           className="menu-toggle"

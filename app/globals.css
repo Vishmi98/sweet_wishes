@@ -289,6 +289,69 @@ button {
   box-shadow: 0 18px 50px rgba(80, 55, 47, .1);
 }
 
+.hero-slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-slider-track {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transition: transform .55s cubic-bezier(.2, .7, .2, 1);
+}
+
+.hero-slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  flex: 0 0 100%;
+}
+
+.hero-slide-image {
+  object-fit: cover;
+}
+
+.hero-slider-arrow {
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  padding: 0 0 3px;
+  border: 1px solid rgba(255, 255, 255, .65);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(53, 42, 41, .4);
+  cursor: pointer;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px;
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity .2s ease, background-color .2s ease;
+}
+
+.hero-image-wrap:hover .hero-slider-arrow,
+.hero-slider:focus-within .hero-slider-arrow {
+  opacity: 1;
+}
+
+.hero-slider-arrow:hover {
+  background: rgba(53, 42, 41, .75);
+}
+
+.hero-slider-previous {
+  left: 12px;
+}
+
+.hero-slider-next {
+  right: 12px;
+}
+
 .hero-image-wrap img,
 .cake-photo img,
 .story-image img {
@@ -1215,7 +1278,7 @@ button {
     align-items: center;
     justify-content: center;
     gap: 6px;
-    margin-left: auto;
+    margin-left: 8px;
     padding: 0;
     border: 0;
     background: transparent;
@@ -1259,7 +1322,7 @@ button {
   .nav-order-link {
     min-height: 36px;
     gap: 6px;
-    margin-left: 8px;
+    margin-left: auto;
     padding: 0 9px;
     font-size: 8px;
   }
@@ -1297,6 +1360,10 @@ button {
 
   .hero-image-wrap {
     height: clamp(260px, 77vw, 360px);
+  }
+
+  .hero-slider-arrow {
+    opacity: 1;
   }
 
   .hero-sticker {
