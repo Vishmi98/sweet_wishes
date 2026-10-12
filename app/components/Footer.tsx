@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { GENERAL_WEBSITE_ORDER_MESSAGE } from "@/constants/pricing";
+
 export default function Footer() {
   const currentYear = 2026;
 
@@ -126,7 +128,7 @@ export default function Footer() {
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/94716091425"
+                href={`https://wa.me/94716091425?text=${GENERAL_WEBSITE_ORDER_MESSAGE}`}
                 aria-label="WhatsApp"
                 target="_blank"
                 rel="noopener noreferrer"

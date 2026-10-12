@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 210">
+  <defs>
+    <linearGradient id="wrap" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#efd6c7"/>
+      <stop offset="1" stop-color="#c9867b"/>
+    </linearGradient>
+    <g id="pink">
+      <ellipse cy="-8" rx="4" ry="8" fill="#df7888"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#ee9aa1" transform="rotate(45)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#df7888" transform="rotate(90)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#ee9aa1" transform="rotate(135)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#df7888" transform="rotate(180)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#ee9aa1" transform="rotate(225)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#df7888" transform="rotate(270)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#ee9aa1" transform="rotate(315)"/>
+      <circle r="4.2" fill="#dfb46e"/>
+    </g>
+    <g id="peach">
+      <ellipse cy="-8" rx="4" ry="8" fill="#e8a076"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#f2bd91" transform="rotate(45)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#e8a076" transform="rotate(90)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#f2bd91" transform="rotate(135)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#e8a076" transform="rotate(180)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#f2bd91" transform="rotate(225)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#e8a076" transform="rotate(270)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#f2bd91" transform="rotate(315)"/>
+      <circle r="4.2" fill="#dfb46e"/>
+    </g>
+  </defs>
+  <rect width="320" height="210" fill="#f8f3eb"/>
+  <path d="m72 91 79 62m-54-86 63 101m-31-120 44 120m0-123v123m31-120-44 120m63-101-63 101m78-91-79 62" fill="none" stroke="#718969" stroke-linecap="round" stroke-width="3"/>
+  <path d="m106 116-23-18q-2 21 23 25m76-47 21-18q2 20-21 25m-49 0-24-19q-2 21 23 26m83 26 20-16q2 19-19 23m-51-9-24-18q-2 21 23 25m-62 13-20-15q-2 18 19 22m112-76 22-17q2 20-21 25" fill="#91a37e"/>
+  <path d="m63 115 194 0-53 78h-89z" fill="url(#wrap)"/>
+  <path d="m113 121 48 72 47-72" fill="#f2e1d2" opacity=".64"/>
+  <path d="M148 132q13 14 27 0l-2 18 23 12q-31 11-48-1l18-10z" fill="#ba6e68"/>
+  <use href="#pink" x="72" y="88"/>
+  <use href="#peach" x="96" y="62"/>
+  <use href="#pink" x="130" y="48"/>
+  <use href="#peach" x="162" y="39"/>
+  <use href="#pink" x="194" y="48"/>
+  <use href="#peach" x="226" y="62"/>
+  <use href="#pink" x="249" y="88"/>
+  <circle cx="60" cy="80" r="2" fill="#fffefa"/>
+  <circle cx="260" cy="79" r="2" fill="#fffefa"/>
+</svg>

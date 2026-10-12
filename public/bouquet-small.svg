@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 210">
+  <defs>
+    <linearGradient id="wrap" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#efd6c7"/>
+      <stop offset="1" stop-color="#c9867b"/>
+    </linearGradient>
+    <g id="pink">
+      <ellipse cy="-8" rx="4" ry="8" fill="#df7888"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#ee9aa1" transform="rotate(45)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#df7888" transform="rotate(90)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#ee9aa1" transform="rotate(135)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#df7888" transform="rotate(180)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#ee9aa1" transform="rotate(225)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#df7888" transform="rotate(270)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#ee9aa1" transform="rotate(315)"/>
+      <circle r="4.2" fill="#dfb46e"/>
+    </g>
+    <g id="peach">
+      <ellipse cy="-8" rx="4" ry="8" fill="#e8a076"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#f2bd91" transform="rotate(45)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#e8a076" transform="rotate(90)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#f2bd91" transform="rotate(135)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#e8a076" transform="rotate(180)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#f2bd91" transform="rotate(225)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#e8a076" transform="rotate(270)"/>
+      <ellipse cy="-8" rx="4" ry="8" fill="#f2bd91" transform="rotate(315)"/>
+      <circle r="4.2" fill="#dfb46e"/>
+    </g>
+  </defs>
+  <rect width="320" height="210" fill="#f8f3eb"/>
+  <path d="M116 71 154 148M160 62v87M204 72l-38 76" fill="none" stroke="#718969" stroke-linecap="round" stroke-width="3"/>
+  <path d="m138 105-16-13q-2 18 16 20m43-17 18-15q2 18-17 22m-22-1-19-10q-1 18 19 20" fill="#91a37e"/>
+  <path d="m105 105 110 0-33 88h-44z" fill="url(#wrap)"/>
+  <path d="m133 111 27 82 27-82" fill="#f2e1d2" opacity=".64"/>
+  <path d="M150 123q10 11 20 0l-2 17 17 9q-25 8-38-1l14-8z" fill="#ba6e68"/>
+  <use href="#pink" x="116" y="69"/>
+  <use href="#peach" x="160" y="58"/>
+  <use href="#pink" x="204" y="69"/>
+  <circle cx="108" cy="59" r="2" fill="#fffefa"/>
+  <circle cx="215" cy="57" r="2" fill="#fffefa"/>
+</svg>
