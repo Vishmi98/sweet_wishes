@@ -57,7 +57,8 @@ export function createWebsiteOrderMessage(product: {
   const framePrice = selectedFrame?.price ?? 0;
   const bouquetPrice = selectedBouquet?.price ?? 0;
   const subtotal = product.price + framePrice + bouquetPrice;
-  const discount = subtotal - getDiscountedPrice(subtotal);
+  const discount = product.price - getDiscountedPrice(product.price);
+  const estimatedTotal = subtotal - discount;
 
   return encodeURIComponent(
     [
@@ -70,12 +71,13 @@ export function createWebsiteOrderMessage(product: {
         ? `Fresh flower bouquet (${selectedBouquet.size}): ${formatPrice(bouquetPrice)}.`
         : "",
       `Subtotal: ${formatPrice(subtotal)}.`,
-      `Website discount (${WEBSITE_DISCOUNT_PERCENTAGE}%): -${formatPrice(discount)}.`,
-      `Estimated total: ${formatPrice(getDiscountedPrice(subtotal))}.`,
+      `Website discount (${WEBSITE_DISCOUNT_PERCENTAGE}% on cake only): -${formatPrice(discount)}.`,
+      `Estimated total before delivery: ${formatPrice(estimatedTotal)}.`,
       selectedFrame
         ? "I will send the photo for the frame here on WhatsApp."
         : "",
-      "Please confirm the final price for my order.",
+      "For delivery, I will share my location here so you can confirm the delivery fee and add it to my final total.",
+      "Please confirm delivery availability and my final total.",
     ]
       .filter(Boolean)
       .join(" "),

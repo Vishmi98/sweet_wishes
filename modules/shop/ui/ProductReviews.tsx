@@ -24,13 +24,19 @@ function ReviewStars({ rating, label }: { rating: number; label: string }) {
 
 export default function ProductReviews({ productSlug }: ProductReviewsProps) {
   const reviews = productReviews[productSlug] ?? [];
+
+  // Return null immediately if there are no reviews at all
+  if (reviews.length === 0) {
+    return null;
+  }
+
   const verifiedReviews = reviews.filter((review) => !review.isExample);
   const exampleReviews = reviews.filter((review) => review.isExample);
   const averageRating =
     verifiedReviews.length === 0
       ? 0
       : verifiedReviews.reduce((total, review) => total + review.rating, 0) /
-        verifiedReviews.length;
+      verifiedReviews.length;
   const formattedAverage = averageRating.toFixed(1);
 
   return (
@@ -39,14 +45,14 @@ export default function ProductReviews({ productSlug }: ProductReviewsProps) {
       id="reviews"
       aria-labelledby="product-reviews-heading"
     >
-      <div className="flex flex-wrap items-end justify-between gap-5 border-b border-[var(--line)] pb-6">
+      <div className="flex flex-wrap items-end justify-between gap-5 border-b border-line pb-6">
         <div>
           <p className="eyebrow mb-3"><span /> Customer feedback</p>
           <h2
             className="m-0 font-[Georgia,Times_New_Roman,serif] text-[clamp(32px,4vw,46px)] font-normal tracking-[-.045em]"
             id="product-reviews-heading"
           >
-            Reviews for this <em className="font-normal text-[var(--rose)]">cake.</em>
+            Reviews for this <em className="font-normal text-rose">cake.</em>
           </h2>
         </div>
         <div className="flex items-center gap-3">
@@ -69,7 +75,7 @@ export default function ProductReviews({ productSlug }: ProductReviewsProps) {
       {verifiedReviews.length > 0 ? (
         <ul className="m-0 grid list-none grid-cols-2 gap-5 p-0 pt-7 max-[700px]:grid-cols-1">
           {verifiedReviews.map((review, index) => (
-            <li className="border border-[var(--line)] bg-white p-5" key={`${review.name}-${review.date}-${index}`}>
+            <li className="border border-line bg-white p-5" key={`${review.name}-${review.date}-${index}`}>
               <div className="flex items-center justify-between gap-3">
                 <ReviewStars
                   rating={review.rating}
@@ -103,7 +109,7 @@ export default function ProductReviews({ productSlug }: ProductReviewsProps) {
 
       {exampleReviews.length > 0 && (
         <div className="mt-7 border border-dashed border-[#d7aaa5] bg-[#fff8f5] p-5">
-          <p className="m-0 text-[10px] font-semibold uppercase tracking-[.1em] text-[var(--rose-dark)]">
+          <p className="m-0 text-[10px] font-semibold uppercase tracking-[.1em] text-rose-dark">
             Example reviews · preview only
           </p>
           <p className="mt-2 mb-0 text-[11px] leading-[1.7] text-[#766c68]">
@@ -113,7 +119,7 @@ export default function ProductReviews({ productSlug }: ProductReviewsProps) {
           <ul className="mt-4 grid list-none grid-cols-2 gap-5 p-0 max-[700px]:grid-cols-1">
             {exampleReviews.map((review, index) => (
               <li
-                className="border border-[var(--line)] bg-white p-5"
+                className="border border-line bg-white p-5"
                 key={`${review.title}-${index}`}
               >
                 <div className="flex items-center justify-between gap-3">
@@ -139,7 +145,7 @@ export default function ProductReviews({ productSlug }: ProductReviewsProps) {
       )}
 
       <div className="mt-6 text-center">
-        <Link className="text-link text-[var(--rose-dark)]" href="/shop">
+        <Link className="text-link text-rose-dark" href="/shop">
           Explore more cakes <span aria-hidden="true">↗</span>
         </Link>
       </div>

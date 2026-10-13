@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import ShopCatalog from "@/modules/shop/ui/ShopCatalog";

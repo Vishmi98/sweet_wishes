@@ -13,15 +13,29 @@ export default function Navbar() {
   const [activeHash, setActiveHash] = useState("");
 
   useEffect(() => {
-    const syncHash = () => setActiveHash(window.location.hash);
+    const syncActiveSection = () => {
+      const sections = ["home", "story", "contact"];
+      const activeSection = sections
+        .filter((id) => {
+          const section = document.getElementById(id);
+          return section && section.getBoundingClientRect().top <= window.innerHeight * 0.35;
+        })
+        .at(-1);
 
-    syncHash();
-    window.addEventListener("hashchange", syncHash);
-    window.addEventListener("popstate", syncHash);
+      setActiveHash(activeSection ? `#${activeSection}` : "");
+    };
+
+    syncActiveSection();
+    window.addEventListener("hashchange", syncActiveSection);
+    window.addEventListener("popstate", syncActiveSection);
+    window.addEventListener("scroll", syncActiveSection, { passive: true });
+    window.addEventListener("resize", syncActiveSection);
 
     return () => {
-      window.removeEventListener("hashchange", syncHash);
-      window.removeEventListener("popstate", syncHash);
+      window.removeEventListener("hashchange", syncActiveSection);
+      window.removeEventListener("popstate", syncActiveSection);
+      window.removeEventListener("scroll", syncActiveSection);
+      window.removeEventListener("resize", syncActiveSection);
     };
   }, []);
 
@@ -51,7 +65,7 @@ export default function Navbar() {
         </Link>
       </div>
 
-      <header className="relative z-[5] flex h-[88px] items-center justify-between border-b border-[rgba(53,42,41,.055)] bg-[var(--paper)] px-[6.1%] max-[700px]:h-[70px] max-[700px]:px-[6%]">
+      <header className="relative z-[5] flex h-[88px] items-center justify-between border-b border-[rgba(53,42,41,.055)] bg-paper px-[6.1%] max-[700px]:h-[70px] max-[700px]:px-[6%]">
         <Link
           className="shrink-0 whitespace-nowrap font-[Georgia,Times_New_Roman,serif] text-[27px] font-medium tracking-[-.07em] max-[700px]:text-2xl"
           href="/#home"
@@ -67,11 +81,11 @@ export default function Navbar() {
           />
         </Link>
         <nav
-          className={`flex items-center gap-[clamp(25px,4vw,60px)] ml-[7%] max-[700px]:absolute max-[700px]:top-[70px] max-[700px]:right-0 max-[700px]:left-0 max-[700px]:z-10 max-[700px]:ml-0 max-[700px]:items-stretch max-[700px]:gap-0 max-[700px]:bg-[var(--paper)] max-[700px]:px-[6%] max-[700px]:py-[8px] max-[700px]:pb-[17px] max-[700px]:shadow-[0_15px_20px_rgba(53,42,41,.08)] ${menuOpen ? "max-[700px]:!flex max-[700px]:flex-col" : "max-[700px]:hidden"}`}
+          className={`flex items-center gap-[clamp(25px,4vw,60px)] ml-[7%] max-[700px]:absolute max-[700px]:top-[70px] max-[700px]:right-0 max-[700px]:left-0 max-[700px]:z-10 max-[700px]:ml-0 max-[700px]:items-stretch max-[700px]:gap-0 max-[700px]:bg-paper max-[700px]:px-[6%] max-[700px]:py-[8px] max-[700px]:pb-[17px] max-[700px]:shadow-[0_15px_20px_rgba(53,42,41,.08)] ${menuOpen ? "max-[700px]:!flex max-[700px]:flex-col" : "max-[700px]:hidden"}`}
         >
           <Link
             href="/#home"
-            className={`font-[Georgia,Times_New_Roman,serif] text-[13px] transition-colors hover:text-[var(--rose-dark)] max-[700px]:border-b max-[700px]:border-[var(--line)] max-[700px]:py-[13px] max-[700px]:last:border-0 ${isActive("/#home") ? "text-[var(--rose-dark)]" : ""}`}
+            className={`font-[Georgia,Times_New_Roman,serif] text-[13px] transition-colors hover:text-rose-dark max-[700px]:border-b max-[700px]:border-line max-[700px]:py-[13px] max-[700px]:last:border-0 ${isActive("/#home") ? "text-rose-dark" : ""}`}
             aria-current={isActive("/#home") ? "location" : undefined}
             onClick={() => handleNavClick("/#home")}
           >
@@ -79,7 +93,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/shop"
-            className={`font-[Georgia,Times_New_Roman,serif] text-[13px] transition-colors hover:text-[var(--rose-dark)] max-[700px]:border-b max-[700px]:border-[var(--line)] max-[700px]:py-[13px] max-[700px]:last:border-0 ${isActive("/shop") ? "text-[var(--rose-dark)]" : ""}`}
+            className={`font-[Georgia,Times_New_Roman,serif] text-[13px] transition-colors hover:text-rose-dark max-[700px]:border-b max-[700px]:border-line max-[700px]:py-[13px] max-[700px]:last:border-0 ${isActive("/shop") ? "text-rose-dark" : ""}`}
             aria-current={isActive("/shop") ? "page" : undefined}
             onClick={() => handleNavClick("/shop")}
           >
@@ -87,7 +101,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/#story"
-            className={`font-[Georgia,Times_New_Roman,serif] text-[13px] transition-colors hover:text-[var(--rose-dark)] max-[700px]:border-b max-[700px]:border-[var(--line)] max-[700px]:py-[13px] max-[700px]:last:border-0 ${isActive("/#story") ? "text-[var(--rose-dark)]" : ""}`}
+            className={`font-[Georgia,Times_New_Roman,serif] text-[13px] transition-colors hover:text-rose-dark max-[700px]:border-b max-[700px]:border-line max-[700px]:py-[13px] max-[700px]:last:border-0 ${isActive("/#story") ? "text-rose-dark" : ""}`}
             aria-current={isActive("/#story") ? "location" : undefined}
             onClick={() => handleNavClick("/#story")}
           >
@@ -95,7 +109,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/blogs"
-            className={`font-[Georgia,Times_New_Roman,serif] text-[13px] transition-colors hover:text-[var(--rose-dark)] max-[700px]:border-b max-[700px]:border-[var(--line)] max-[700px]:py-[13px] max-[700px]:last:border-0 ${isActive("/blogs") ? "text-[var(--rose-dark)]" : ""}`}
+            className={`font-[Georgia,Times_New_Roman,serif] text-[13px] transition-colors hover:text-rose-dark max-[700px]:border-b max-[700px]:border-line max-[700px]:py-[13px] max-[700px]:last:border-0 ${isActive("/blogs") ? "text-rose-dark" : ""}`}
             aria-current={isActive("/blogs") ? "page" : undefined}
             onClick={() => handleNavClick("/blogs")}
           >
@@ -103,7 +117,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/#contact"
-            className={`font-[Georgia,Times_New_Roman,serif] text-[13px] transition-colors hover:text-[var(--rose-dark)] max-[700px]:border-b max-[700px]:border-[var(--line)] max-[700px]:py-[13px] max-[700px]:last:border-0 ${isActive("/#contact") ? "text-[var(--rose-dark)]" : ""}`}
+            className={`font-[Georgia,Times_New_Roman,serif] text-[13px] transition-colors hover:text-rose-dark max-[700px]:border-b max-[700px]:border-line max-[700px]:py-[13px] max-[700px]:last:border-0 ${isActive("/#contact") ? "text-rose-dark" : ""}`}
             aria-current={isActive("/#contact") ? "location" : undefined}
             onClick={() => handleNavClick("/#contact")}
           >
@@ -125,8 +139,8 @@ export default function Navbar() {
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <span className="h-px w-5 bg-[var(--ink)]" />
-          <span className="h-px w-5 bg-[var(--ink)]" />
+          <span className="h-px w-5 bg-ink" />
+          <span className="h-px w-5 bg-ink" />
         </button>
       </header>
     </>

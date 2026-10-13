@@ -46,7 +46,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
     <main>
       <Navbar />
       <article className="px-[10.2%] pt-[38px] pb-20 max-[1000px]:px-[7%] max-[700px]:px-[7%] max-[700px]:pt-7 max-[700px]:pb-14">
-        <nav className="mb-[45px] flex flex-wrap items-center gap-[10px] text-[10px] text-[#938680] max-[700px]:mb-[30px] max-[700px]:gap-[7px] max-[700px]:text-[9px] [&_a:hover]:text-[var(--rose-dark)]" aria-label="Breadcrumb">
+        <nav className="mb-[45px] flex flex-wrap items-center gap-[10px] text-[10px] text-[#938680] max-[700px]:mb-[30px] max-[700px]:gap-[7px] max-[700px]:text-[9px] [&_a:hover]:text-rose-dark" aria-label="Breadcrumb">
           <Link href="/">Home</Link><span>/</span>
           <Link href="/blogs">Blog</Link><span>/</span>
           <span aria-current="page">{blog.title}</span>
@@ -57,7 +57,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
           <h1 className="m-0 font-[Georgia,Times_New_Roman,serif] text-[clamp(42px,5vw,64px)] font-normal leading-[1.08] tracking-[-.055em] max-[700px]:text-[44px]">{blog.title}</h1>
           <p className="mx-auto mt-[17px] mb-[15px] max-w-[650px] font-[Georgia,Times_New_Roman,serif] text-[15px] leading-[1.7] text-[#827671] max-[700px]:text-sm">{blog.excerpt}</p>
           <p className="m-0 flex justify-center gap-3 text-[9px] text-[#938680]">
-            <span>{blog.date}</span><span aria-hidden="true" className="text-[var(--rose)]">·</span><span>{blog.readingTime}</span>
+            <span>{blog.date}</span><span aria-hidden="true" className="text-rose">·</span><span>{blog.readingTime}</span>
           </p>
         </header>
 
@@ -81,19 +81,19 @@ export default async function BlogPage({ params }: BlogPageProps) {
               ))}
             </section>
           ))}
-          <Link className="text-link mt-1.5 text-[var(--rose-dark)]" href="/blogs">
+          <Link className="text-link mt-1.5 text-rose-dark" href="/blogs">
             <span aria-hidden="true">←</span> Back to all stories
           </Link>
         </div>
       </article>
 
-      <section className="bg-[var(--cream)] px-[10.2%] pt-[68px] pb-[85px] max-[1000px]:px-[7%] max-[700px]:px-[7%] max-[700px]:pt-[50px] max-[700px]:pb-[62px]" aria-labelledby="related-stories-heading">
+      <section className="bg-cream px-[10.2%] pt-[68px] pb-[85px] max-[1000px]:px-[7%] max-[700px]:px-[7%] max-[700px]:pt-[50px] max-[700px]:pb-[62px]" aria-labelledby="related-stories-heading">
         <div className="section-heading mb-7 max-[700px]:flex max-[700px]:flex-col max-[700px]:items-start max-[700px]:gap-3">
           <div>
             <p className="eyebrow"><span /> Keep the sweetness going</p>
-            <h2 className="m-0 font-[Georgia,Times_New_Roman,serif] text-[clamp(38px,4vw,52px)] font-normal tracking-[-.05em]" id="related-stories-heading">More little <em className="font-normal text-[var(--rose)]">stories.</em></h2>
+            <h2 className="m-0 font-[Georgia,Times_New_Roman,serif] text-[clamp(38px,4vw,52px)] font-normal tracking-[-.05em]" id="related-stories-heading">More little <em className="font-normal text-rose">stories.</em></h2>
           </div>
-          <Link className="text-link text-[var(--rose-dark)]" href="/blogs">
+          <Link className="text-link text-rose-dark" href="/blogs">
             All stories <span aria-hidden="true">↗</span>
           </Link>
         </div>
@@ -111,12 +111,12 @@ export default async function BlogPage({ params }: BlogPageProps) {
               </Link>
               <div className="pt-4">
                 <p className="m-0 flex flex-wrap gap-x-[14px] gap-y-2 text-[9px] tracking-[.04em] text-[#938680]">
-                  <span className="text-[var(--rose-dark)] uppercase">{item.category}</span>
+                  <span className="text-rose-dark uppercase">{item.category}</span>
                   <span>{item.date}</span>
                 </p>
                 <h3 className="mt-[11px] mb-2 font-[Georgia,Times_New_Roman,serif] text-[25px] font-normal tracking-[-.025em]"><Link href={`/blogs/${item.slug}`}>{item.title}</Link></h3>
                 <p className="m-0 text-[11px] leading-[1.8] text-[#827671]">{item.excerpt}</p>
-                <Link className="mt-[13px] inline-flex items-center gap-2 text-[10px] text-[var(--rose-dark)]" href={`/blogs/${item.slug}`}>
+                <Link className="mt-[13px] inline-flex items-center gap-2 text-[10px] text-rose-dark" href={`/blogs/${item.slug}`}>
                   Read the story <span aria-hidden="true">↗</span>
                 </Link>
               </div>

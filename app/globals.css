@@ -1,18 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #352a29;
-  --muted: #7d706c;
-  --rose: #d97578;
-  --rose-dark: #bd5e64;
-  --cream: #f8f3eb;
-  --paper: #fffefa;
-  --line: #eae2d9;
+  --color-ink: #352a29;
+  --color-muted: #7d706c;
+  --color-rose: #d97578;
+  --color-rose-dark: #bd5e64;
+  --color-cream: #f8f3eb;
+  --color-paper: #fffefa;
+  --color-line: #eae2d9;
+  --color-chocolate: #573c3e;
+  --color-green: #70b8a8;
 }
 
 @theme inline {
-  --color-background: var(--paper);
-  --color-foreground: var(--ink);
+  --color-background: var(--color-paper);
+  --color-foreground: var(--color-ink);
+  
+  /* Register your custom colors here so Tailwind generates classes like text-rose-dark */
+  --color-ink: var(--color-ink);
+  --color-muted: var(--color-muted);
+  --color-rose: var(--color-rose);
+  --color-rose-dark: var(--color-rose-dark);
+  --color-cream: var(--color-cream);
+  --color-paper: var(--color-paper);
+  --color-line: var(--color-line);
+  --color-chocolate: var(--color-chocolate);
+  --color-green: var(--color-green);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -27,23 +41,25 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--color-paper);
+  color: var(--color-ink);
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-button,
-a {
-  color: inherit;
-}
+@layer base {
+  button,
+  a {
+    color: inherit;
+  }
 
-a {
-  text-decoration: none;
-}
+  a {
+    text-decoration: none;
+  }
 
-button {
-  font: inherit;
+  button {
+    font: inherit;
+  }
 }
 
 .eyebrow {
@@ -51,7 +67,7 @@ button {
   align-items: center;
   gap: 10px;
   margin: 0 0 21px;
-  color: var(--muted);
+  color: var(--color-muted);
   font-size: 9px;
   letter-spacing: .15em;
   line-height: 1.5;
@@ -63,7 +79,7 @@ button {
   height: 1px;
   display: inline-block;
   flex: 0 0 22px;
-  background: var(--rose);
+  background: var(--color-rose);
 }
 
 .button {
@@ -98,15 +114,15 @@ button {
 
 .button-dark {
   color: #fffaf5;
-  background: var(--ink);
+  background: var(--color-ink);
 }
 
 .button-dark:hover {
-  background: var(--rose-dark);
+  background: var(--color-rose-dark);
 }
 
 .button-light {
-  color: var(--ink);
+  color: var(--color-ink);
   background: #fff9f3;
 }
 
