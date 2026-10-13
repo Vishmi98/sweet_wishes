@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { FiArrowUpRight } from "react-icons/fi";
 
 import {
   createWebsiteOrderMessage,
@@ -72,11 +73,10 @@ export default function ProductOrderOptions({ cake }: ProductOrderOptionsProps) 
         <div className="grid grid-cols-3 gap-[10px]">
           {flowerBouquetOptions.map((bouquet) => (
             <label
-              className={`flex min-w-0 cursor-pointer flex-col overflow-hidden border transition-colors ${
-                bouquetSize === bouquet.size
+              className={`flex min-w-0 cursor-pointer flex-col overflow-hidden border transition-colors ${bouquetSize === bouquet.size
                   ? "border-[#d7aaa5] bg-[#fff8f5]"
                   : "border-line bg-paper hover:border-[#d7aaa5] hover:bg-[#fff8f5]"
-              }`}
+                }`}
               key={bouquet.size}
             >
               <input
@@ -139,7 +139,11 @@ export default function ProductOrderOptions({ cake }: ProductOrderOptionsProps) 
         target="_blank"
         rel="noreferrer"
       >
-        Order on WhatsApp <span aria-hidden="true">↗</span>
+        Order on WhatsApp
+        <FiArrowUpRight
+          className="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+          aria-hidden="true"
+        />
       </a>
       <p className="mt-[10px] text-center text-[9px] text-[#938680]">
         Your gift selections and estimated total before delivery will be included in the message.

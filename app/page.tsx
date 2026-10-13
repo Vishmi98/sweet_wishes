@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
+import { HiSparkles } from "react-icons/hi";
+import { FaRegHeart } from "react-icons/fa";
+import { LuFlower2 } from "react-icons/lu";
 
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
@@ -30,17 +33,23 @@ export default function Home() {
 
       <section className="relative z-[2] mx-[6.1%] -mt-[37px] grid grid-cols-3 bg-white px-[25px] py-5 shadow-[0_15px_44px_rgba(53,42,41,.08)] max-[1000px]:mx-[4%] max-[1000px]:px-[10px] max-[700px]:mx-[5%] max-[700px]:-mt-[31px] max-[700px]:grid-cols-1 max-[700px]:px-[18px] max-[700px]:py-[11px]" aria-label="Explore Sweet Wishes">
         <Link className="group flex min-h-[71px] items-center gap-[15px] border-r border-line px-[22px] py-2 last:border-0 max-[1000px]:gap-[10px] max-[1000px]:px-3 max-[700px]:min-h-[68px] max-[700px]:gap-[15px] max-[700px]:border-r-0 max-[700px]:border-b max-[700px]:px-[3px] max-[700px]:last:border-0" href="/shop">
-          <span className="grid h-12 w-12 flex-none place-items-center rounded-full bg-chocolate font-[Georgia,Times_New_Roman,serif] text-2xl text-white max-[700px]:h-[43px] max-[700px]:w-[43px]">✳</span>
+          <span className="grid h-12 w-12 flex-none place-items-center rounded-full bg-chocolate font-[Georgia,Times_New_Roman,serif] text-2xl text-white max-[700px]:h-[43px] max-[700px]:w-[43px]">
+            <HiSparkles className="h-5 w-5" />
+          </span>
           <span className="flex-1"><strong className="mb-[5px] block font-[Georgia,Times_New_Roman,serif] text-base font-normal italic max-[1000px]:text-sm">Made for you</strong><small className="block text-[10px] text-[#827671]">Custom cakes, your way</small></span>
           <BsArrowRight className="w-[15px] text-[#a9968f] transition-transform group-hover:translate-x-[3px]" />
         </Link>
         <Link className="group flex min-h-[71px] items-center gap-[15px] border-r border-line px-[22px] py-2 last:border-0 max-[1000px]:gap-[10px] max-[1000px]:px-3 max-[700px]:min-h-[68px] max-[700px]:gap-[15px] max-[700px]:border-r-0 max-[700px]:border-b max-[700px]:px-[3px] max-[700px]:last:border-0" href="/shop">
-          <span className="grid h-12 w-12 flex-none place-items-center rounded-full bg-rose font-[Georgia,Times_New_Roman,serif] text-2xl text-white max-[700px]:h-[43px] max-[700px]:w-[43px]">♡</span>
+          <span className="grid h-12 w-12 flex-none place-items-center rounded-full bg-rose font-[Georgia,Times_New_Roman,serif] text-2xl text-white max-[700px]:h-[43px] max-[700px]:w-[43px]">
+            <FaRegHeart className="h-4 w-4" />
+          </span>
           <span className="flex-1"><strong className="mb-[5px] block font-[Georgia,Times_New_Roman,serif] text-base font-normal italic max-[1000px]:text-sm">Little sweet things</strong><small className="block text-[10px] text-[#827671]">Our everyday favorites</small></span>
           <BsArrowRight className="w-[15px] text-[#a9968f] transition-transform group-hover:translate-x-[3px]" />
         </Link>
         <a className="group flex min-h-[71px] items-center gap-[15px] border-r border-line px-[22px] py-2 last:border-0 max-[1000px]:gap-[10px] max-[1000px]:px-3 max-[700px]:min-h-[68px] max-[700px]:gap-[15px] max-[700px]:border-r-0 max-[700px]:border-b max-[700px]:px-[3px] max-[700px]:last:border-0" href="#contact">
-          <span className="grid h-12 w-12 flex-none place-items-center rounded-full bg-green font-[Georgia,Times_New_Roman,serif] text-2xl text-white max-[700px]:h-[43px] max-[700px]:w-[43px]">✿</span>
+          <span className="grid h-12 w-12 flex-none place-items-center rounded-full bg-green font-[Georgia,Times_New_Roman,serif] text-2xl text-white max-[700px]:h-[43px] max-[700px]:w-[43px]">
+            <LuFlower2 className="h-5 w-5" />
+          </span>
           <span className="flex-1"><strong className="mb-[5px] block font-[Georgia,Times_New_Roman,serif] text-base font-normal italic max-[1000px]:text-sm">Let&apos;s celebrate</strong><small className="block text-[10px] text-[#827671]">Something lovely is coming</small></span>
           <BsArrowRight className="w-[15px] text-[#a9968f] transition-transform group-hover:translate-x-[3px]" />
         </a>

@@ -27,15 +27,24 @@ export default function ShopCatalog() {
       <div className="mb-11 flex items-center gap-[10px] text-[10px] text-[#938680] max-[700px]:mb-[34px] [&_a:hover]:text-rose-dark">
         <Link href="/">Home</Link><span>/</span><span>Our cakes</span>
       </div>
-      <div className="section-heading max-[700px]:block">
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-[30px]">
         <div>
           <p className="eyebrow"><span /> A little something for every occasion</p>
           <h1 className="m-0 font-[Georgia,Times_New_Roman,serif] text-[clamp(44px,5.3vw,70px)] font-normal leading-[1.05] tracking-[-.055em] max-[700px]:text-[46px]">All the <em className="font-normal text-rose">good things.</em></h1>
         </div>
-        <p className="mt-0 mb-[5px] max-w-[290px] text-[11px] leading-[1.8] text-[#827671] max-[700px]:mt-[15px]">
+        <p className="hidden md:block mt-0 mb-[5px] max-w-[290px] text-[11px] leading-[1.8] text-[#827671] max-[700px]:mt-0 items-end">
           From just-because cupcakes to the cake everyone remembers. Find the
           one that feels like you.
         </p>
+        <div className="flex md:hidden items-center justify-between gap-5">
+          <p className="mt-0 mb-[5px] max-w-[290px] text-[11px] leading-[1.8] text-[#827671] max-[700px]:mt-0">
+            From just-because cupcakes to the cake everyone remembers. Find the
+            one that feels like you.
+          </p>
+          <span className="text-[10px] text-[#938680] md:hidden block">
+            {String(visibleCakes.length).padStart(2, "0")} little treats
+          </span>
+        </div>
       </div>
       <div className="mt-[38px] mb-[23px] flex items-center justify-between border-b border-line pb-[14px] max-[700px]:mt-[29px] max-[700px]:items-start max-[700px]:gap-3">
         <div className="flex gap-[25px] max-[700px]:gap-[14px] max-[390px]:gap-[10px]" aria-label="Filter cakes">
@@ -54,7 +63,7 @@ export default function ShopCatalog() {
             </button>
           ))}
         </div>
-        <span className="text-[10px] text-[#938680]">
+        <span className="text-[10px] text-[#938680] hidden md:block">
           {String(visibleCakes.length).padStart(2, "0")} little treats
         </span>
       </div>

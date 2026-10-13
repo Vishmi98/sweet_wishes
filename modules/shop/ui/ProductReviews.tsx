@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FiArrowUpRight } from "react-icons/fi";
 
 import { productReviews } from "@/constants/reviews";
 
@@ -146,7 +147,11 @@ export default function ProductReviews({ productSlug }: ProductReviewsProps) {
 
       <div className="mt-6 text-center">
         <Link className="text-link text-rose-dark" href="/shop">
-          Explore more cakes <span aria-hidden="true">↗</span>
+          Explore more cakes
+          <FiArrowUpRight
+            className="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+            aria-hidden="true"
+          />
         </Link>
       </div>
     </section>

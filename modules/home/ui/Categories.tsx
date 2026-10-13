@@ -17,12 +17,14 @@ const Categories = () => {
 
     return (
         <section className="px-[10.2%] pt-[107px] pb-[95px] max-[1000px]:px-[7%] max-[700px]:px-[7%] max-[700px]:pt-[76px] max-[700px]:pb-[68px]" id="shop">
-            <div className="section-heading max-[700px]:block">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-[30px]">
                 <div>
                     <p className="eyebrow"><span /> A few of our favorites</p>
-                    <h2 className="m-0 font-[Georgia,Times_New_Roman,serif] text-[clamp(40px,4vw,55px)] font-normal leading-[1.04] tracking-[-.055em] max-[700px]:text-[45px]">Good things,<br className="hidden max-[700px]:inline" /> <em className="font-normal text-rose">freshly baked.</em></h2>
+                    <h2 className="m-0 font-[Georgia,Times_New_Roman,serif] text-[clamp(40px,4vw,55px)] font-normal leading-[1.04] tracking-[-.055em] max-[700px]:text-[42px]">
+                        Good things,<br className="hidden max-[700px]:inline" /> <em className="font-normal text-rose">freshly baked.</em>
+                    </h2>
                 </div>
-                <p className="mt-0 mb-[5px] max-w-[290px] text-[11px] leading-[1.8] text-[#827671] max-[700px]:mt-[15px]">
+                <p className="mt-0 mb-[5px] max-w-[290px] text-[11px] leading-[1.8] text-[#827671] max-[700px]:mt-0">
                     The kind of cake that makes you close your eyes at the first bite.
                     Find your new favorite below.
                 </p>

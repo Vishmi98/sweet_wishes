@@ -3,9 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { FiArrowUpRight } from "react-icons/fi";
 
 import { cakes } from "@/constants/data";
-import { formatPrice, getDiscountedPrice } from "@/constants/pricing";
+import { formatPrice } from "@/constants/pricing";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import ProductOrderOptions from "@/modules/shop/ui/ProductOrderOptions";
@@ -104,13 +105,25 @@ async function CakePageContent({ params }: CakePageProps) {
       <ProductReviews productSlug={cake.slug} />
 
       <section className="bg-cream px-[10.2%] pt-[68px] pb-[20px] max-[1000px]:px-[7%] max-[700px]:px-[7%] max-[700px]:pt-[54px] max-[700px]:pb-[65px]">
-        <div className="section-heading mb-[30px] max-[700px]:mb-6 max-[700px]:block">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-[30px] gap-4">
           <div>
-            <p className="eyebrow"><span /> There&apos;s always room for one more</p>
-            <h2 className="m-0 font-[Georgia,Times_New_Roman,serif] text-[clamp(38px,4vw,52px)] font-normal tracking-[-.05em]">More to <em className="font-normal text-rose">fall for.</em></h2>
+            <p className="eyebrow">
+              <span /> There&apos;s always room for one more
+            </p>
+            <h2 className="m-0 font-[Georgia,Times_New_Roman,serif] text-[clamp(38px,4vw,52px)] font-normal tracking-[-.05em] leading-[1.08]">
+              More to <em className="font-normal text-rose">fall for.</em>
+            </h2>
           </div>
-          <Link className="text-link text-rose-dark max-[700px]:mt-[19px]" href="/shop">
-            Browse all treats <span aria-hidden="true">↗</span>
+
+          <Link
+            className="group/link text-link text-rose-dark inline-flex items-center gap-2 pb-1 border-b border-line w-fit transition-colors hover:text-ink"
+            href="/shop"
+          >
+            Browse all treats
+            <FiArrowUpRight
+              className="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+              aria-hidden="true"
+            />
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-x-5 gap-y-8 pb-8 min-[1001px]:grid-cols-4 md:pb-20 max-[700px]:gap-x-[13px]">

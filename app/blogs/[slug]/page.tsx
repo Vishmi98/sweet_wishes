@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { FiArrowUpRight } from "react-icons/fi";
 
 import { blogs } from "@/constants/blogs";
 import Footer from "../../components/Footer";
@@ -88,13 +89,20 @@ export default async function BlogPage({ params }: BlogPageProps) {
       </article>
 
       <section className="bg-cream px-[10.2%] pt-[68px] pb-[85px] max-[1000px]:px-[7%] max-[700px]:px-[7%] max-[700px]:pt-[50px] max-[700px]:pb-[62px]" aria-labelledby="related-stories-heading">
-        <div className="section-heading mb-7 max-[700px]:flex max-[700px]:flex-col max-[700px]:items-start max-[700px]:gap-3">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-[30px] gap-4">
           <div>
             <p className="eyebrow"><span /> Keep the sweetness going</p>
             <h2 className="m-0 font-[Georgia,Times_New_Roman,serif] text-[clamp(38px,4vw,52px)] font-normal tracking-[-.05em]" id="related-stories-heading">More little <em className="font-normal text-rose">stories.</em></h2>
           </div>
-          <Link className="text-link text-rose-dark" href="/blogs">
-            All stories <span aria-hidden="true">↗</span>
+          <Link
+            className="group/link text-link text-rose-dark inline-flex items-center gap-2 pb-1 border-b border-line w-fit transition-colors hover:text-ink"
+            href="/blogs"
+          >
+            All stories
+            <FiArrowUpRight
+              className="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+              aria-hidden="true"
+            />
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-x-6 gap-y-[34px] max-[700px]:grid-cols-1 max-[700px]:gap-7">
@@ -117,7 +125,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
                 <h3 className="mt-[11px] mb-2 font-[Georgia,Times_New_Roman,serif] text-[25px] font-normal tracking-[-.025em]"><Link href={`/blogs/${item.slug}`}>{item.title}</Link></h3>
                 <p className="m-0 text-[11px] leading-[1.8] text-[#827671]">{item.excerpt}</p>
                 <Link className="mt-[13px] inline-flex items-center gap-2 text-[10px] text-rose-dark" href={`/blogs/${item.slug}`}>
-                  Read the story <span aria-hidden="true">↗</span>
+                  Read the story
+                  <FiArrowUpRight
+                    className="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                    aria-hidden="true"
+                  />
                 </Link>
               </div>
             </article>

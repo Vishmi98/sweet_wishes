@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FiArrowUpRight } from "react-icons/fi";
 
 import type { cakes } from "@/constants/data";
 import { formatPrice, getDiscountedPrice } from "@/constants/pricing";
@@ -44,7 +45,11 @@ export default function CakeCard({ cake, index }: CakeCardProps) {
       <p className="mt-2 mb-0 text-[9px] leading-[1.6] text-[#91847e] max-[700px]:mt-1.5 max-[700px]:text-[8px]">{cake.description}</p>
       <div className="mt-3 flex items-center justify-between gap-2 max-[700px]:flex-col max-[700px]:items-start max-[700px]:gap-2">
         <Link className="inline-flex items-center gap-2 text-[9px] text-rose-dark" href={`/shop/${cake.slug}`}>
-          View details <span className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true">↗</span>
+          View details
+          <FiArrowUpRight
+            className="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+            aria-hidden="true"
+          />
         </Link>
         <Link
           className="whitespace-nowrap bg-[#3f7963] px-[9px] py-[7px] text-[9px] text-white transition-colors hover:bg-[#315f4e] max-[700px]:px-2 max-[700px]:text-[8px]"

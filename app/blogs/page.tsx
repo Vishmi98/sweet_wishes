@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { FiArrowUpRight } from "react-icons/fi";
 
 import { blogs } from "@/constants/blogs";
 import Footer from "../components/Footer";
@@ -51,13 +52,17 @@ export default function BlogsPage() {
             </h2>
             <p className="m-0 text-[11px] leading-[1.8] text-[#827671]">{featuredBlog.excerpt}</p>
             <Link className="text-link mt-[23px] text-rose-dark" href={`/blogs/${featuredBlog.slug}`}>
-              Read the story <span aria-hidden="true">↗</span>
+              Read the story
+              <FiArrowUpRight
+                className="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                aria-hidden="true"
+              />
             </Link>
           </div>
         </article>
 
         <section className="pt-[78px] max-[700px]:pt-[55px]" aria-labelledby="blog-list-heading">
-          <div className="section-heading mb-7 max-[700px]:flex max-[700px]:flex-col max-[700px]:items-start max-[700px]:gap-3">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-[30px] gap-4">
             <div>
               <p className="eyebrow"><span /> Fresh from the kitchen</p>
               <h2 className="m-0 font-[Georgia,Times_New_Roman,serif] text-[clamp(38px,4vw,52px)] font-normal tracking-[-.05em]">More to <em className="font-normal text-rose">browse.</em></h2>
@@ -86,7 +91,11 @@ export default function BlogsPage() {
                   <h3 className="mt-[11px] mb-2 font-[Georgia,Times_New_Roman,serif] text-[25px] font-normal tracking-[-.025em]"><Link href={`/blogs/${blog.slug}`}>{blog.title}</Link></h3>
                   <p className="m-0 text-[11px] leading-[1.8] text-[#827671]">{blog.excerpt}</p>
                   <Link className="mt-[13px] inline-flex items-center gap-2 text-[10px] text-rose-dark" href={`/blogs/${blog.slug}`}>
-                    Read the story <span aria-hidden="true">↗</span>
+                    Read the story
+                    <FiArrowUpRight
+                      className="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                      aria-hidden="true"
+                    />
                   </Link>
                 </div>
               </article>
