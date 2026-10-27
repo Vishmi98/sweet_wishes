@@ -5,13 +5,22 @@ import { useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 
 import {
+  DELIVERY_BASE_FEE,
+  DELIVERY_PER_KM_FEE,
+  MAX_DELIVERY_DISTANCE_KM,
+  type DeliveryLocation,
+} from "@/constants/delivery";
+import {
   createWebsiteOrderMessage,
   flowerBouquetOptions,
   formatPrice,
   getDiscountedPrice,
   photoFrameOptions,
   WEBSITE_DISCOUNT_PERCENTAGE,
+  type OrderFulfilment,
 } from "@/constants/pricing";
+import { useDeliveryQuote } from "@/modules/shop/hooks/useDeliveryQuote";
+import DeliveryLocationPicker from "@/modules/shop/ui/DeliveryLocationPicker";
 
 type ProductOrderOptionsProps = {
   cake: {
@@ -20,9 +29,27 @@ type ProductOrderOptionsProps = {
   };
 };
 
+type FulfilmentType = OrderFulfilment["type"];
+
+const fulfilmentOptions: { type: FulfilmentType; label: string; detail: string }[] = [
+  {
+    type: "delivery",
+    label: "Delivery",
+    detail: `${formatPrice(DELIVERY_BASE_FEE)} first km + ${formatPrice(DELIVERY_PER_KM_FEE)}/km`,
+  },
+  { type: "pickup", label: "Pickup", detail: "From our shop, no fee" },
+];
+
 export default function ProductOrderOptions({ cake }: ProductOrderOptionsProps) {
   const [frameSize, setFrameSize] = useState("");
   const [bouquetSize, setBouquetSize] = useState("");
+  const [fulfilmentType, setFulfilmentType] = useState<FulfilmentType>("delivery");
+  const [deliveryLocation, setDeliveryLocation] = useState<DeliveryLocation | null>(null);
+  const [addressNote, setAddressNote] = useState("");
+
+  const isDelivery = fulfilmentType === "delivery";
+  const quote = useDeliveryQuote(isDelivery ? deliveryLocation : null);
+  const deliveryFee = isDelivery && quote.status === "ok" ? quote.fee : null;
 
   const selectedFrame = photoFrameOptions.find((frame) => frame.size === frameSize);
   const selectedBouquet = flowerBouquetOptions.find(
@@ -32,7 +59,20 @@ export default function ProductOrderOptions({ cake }: ProductOrderOptionsProps) 
     cake.price + (selectedFrame?.price ?? 0) + (selectedBouquet?.price ?? 0);
   const discountAmount = cake.price - getDiscountedPrice(cake.price);
   const discountedTotal = subtotal - discountAmount;
-  const orderMessage = createWebsiteOrderMessage(cake, frameSize, bouquetSize);
+  const estimatedTotal = discountedTotal + (deliveryFee ?? 0);
+  const totalIncludesDelivery = !isDelivery || deliveryFee !== null;
+
+  const fulfilment: OrderFulfilment = isDelivery
+    ? {
+        type: "delivery",
+        location: deliveryLocation ?? undefined,
+        note: addressNote,
+        distanceKm:
+          quote.status === "ok" || quote.status === "out_of_range" ? quote.distanceKm : undefined,
+        fee: deliveryFee ?? undefined,
+      }
+    : { type: "pickup" };
+  const orderMessage = createWebsiteOrderMessage(cake, frameSize, bouquetSize, fulfilment);
 
   return (
     <div className="mt-7">
@@ -103,6 +143,45 @@ export default function ProductOrderOptions({ cake }: ProductOrderOptionsProps) 
         </div>
       </fieldset>
 
+      <fieldset className="mb-5 min-w-0 border-0 p-0">
+        <legend className="mb-[10px] w-full font-[Georgia,Times_New_Roman,serif] text-base">
+          Delivery or pickup
+        </legend>
+        <div className="grid grid-cols-2 gap-[7px]">
+          {fulfilmentOptions.map((option) => (
+            <label
+              className={`flex min-h-[43px] cursor-pointer items-center gap-2 border px-[10px] py-[9px] text-[#74645f] transition-colors ${fulfilmentType === option.type ? "border-[#d7aaa5] bg-[#fff8f5]" : "border-line bg-paper hover:border-[#d7aaa5] hover:bg-[#fff8f5]"}`}
+              key={option.type}
+            >
+              <input
+                className="m-0 h-[13px] w-[13px] flex-none accent-rose-dark"
+                type="radio"
+                name="fulfilment"
+                value={option.type}
+                checked={fulfilmentType === option.type}
+                onChange={() => setFulfilmentType(option.type)}
+              />
+              <span className="flex min-w-0 flex-col">
+                <span className="text-xs font-semibold text-ink">{option.label}</span>
+                <span className="text-[9px]">{option.detail}</span>
+              </span>
+            </label>
+          ))}
+        </div>
+
+        {isDelivery && (
+          <div className="mt-[14px]">
+            <DeliveryLocationPicker
+              location={deliveryLocation}
+              onLocationChange={setDeliveryLocation}
+              note={addressNote}
+              onNoteChange={setAddressNote}
+              quote={quote}
+            />
+          </div>
+        )}
+      </fieldset>
+
       <div className="my-[23px] mt-[23px] mb-[17px] bg-cream p-4" aria-live="polite">
         <p className="flex justify-between gap-3 text-[10px] leading-[1.6] text-[#74645f]"><span>{cake.name} (starting price)</span><span>{formatPrice(cake.price)}</span></p>
         {selectedFrame && (
@@ -122,12 +201,32 @@ export default function ProductOrderOptions({ cake }: ProductOrderOptionsProps) 
           <span>Website discount ({WEBSITE_DISCOUNT_PERCENTAGE}% on cake)</span>
           <span>-{formatPrice(discountAmount)}</span>
         </p>
+        {isDelivery ? (
+          <p className="mt-2 flex justify-between gap-3 text-[10px] leading-[1.6] text-[#74645f]">
+            <span>Delivery{deliveryFee !== null && quote.status === "ok" ? ` (${quote.distanceKm} km)` : ""}</span>
+            <span>{deliveryFee !== null ? formatPrice(deliveryFee) : "To be confirmed"}</span>
+          </p>
+        ) : (
+          <p className="mt-2 flex justify-between gap-3 text-[10px] leading-[1.6] text-[#74645f]">
+            <span>Pickup from our shop</span>
+            <span>No fee</span>
+          </p>
+        )}
         <p className="mt-3 flex justify-between gap-3 border-t border-[#d8c9c0] pt-3 font-[Georgia,Times_New_Roman,serif] text-base text-ink">
-          <strong className="font-normal">Estimated total before delivery</strong>
-          <strong className="whitespace-nowrap font-normal text-rose-dark">{formatPrice(discountedTotal)}</strong>
+          <strong className="font-normal">
+            {totalIncludesDelivery ? "Estimated total" : "Estimated total before delivery"}
+          </strong>
+          <strong className="whitespace-nowrap font-normal text-rose-dark">{formatPrice(estimatedTotal)}</strong>
         </p>
         <p className="mt-[10px] block text-[9px] text-[#938680]">
-          Delivery fee isn&apos;t included. Share your location on WhatsApp so we can confirm the fee and add it to your final total.
+          {!isDelivery &&
+            "Pick up your order from our shop in Ambalangoda. No delivery fee."}
+          {isDelivery &&
+            deliveryFee !== null &&
+            `Delivery is ${formatPrice(DELIVERY_BASE_FEE)} for the first km and ${formatPrice(DELIVERY_PER_KM_FEE)} for each extra km by road.`}
+          {isDelivery &&
+            deliveryFee === null &&
+            `Delivery fee isn't included yet. Set your location above (we deliver up to ${MAX_DELIVERY_DISTANCE_KM} km), or share it on WhatsApp and we'll confirm the fee.`}
           {" "}Starting-price estimate. We&apos;ll confirm the final price on WhatsApp.
           {selectedFrame && " Send us your photo in the WhatsApp chat."}
         </p>
@@ -146,7 +245,7 @@ export default function ProductOrderOptions({ cake }: ProductOrderOptionsProps) 
         />
       </a>
       <p className="mt-[10px] text-center text-[9px] text-[#938680]">
-        Your gift selections and estimated total before delivery will be included in the message.
+        Your gift selections, delivery details and estimated total will be included in the message.
       </p>
     </div>
   );

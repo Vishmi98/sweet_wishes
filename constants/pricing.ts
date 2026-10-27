@@ -46,10 +46,68 @@ export const GENERAL_WEBSITE_ORDER_MESSAGE = encodeURIComponent(
   "Hi Sweet Wishes! I'd like to place an order through your website and use the 10% website discount. Please help me with my order.",
 );
 
+export type OrderFulfilment =
+  | { type: "pickup" }
+  | {
+      type: "delivery";
+      location?: { lat: number; lng: number; label: string };
+      note?: string;
+      distanceKm?: number;
+      // Only set when the address is inside the delivery area.
+      fee?: number;
+    };
+
+function getFulfilmentLines(fulfilment: OrderFulfilment | undefined, estimatedTotal: number) {
+  if (fulfilment?.type === "pickup") {
+    return [
+      `Estimated total: ${formatPrice(estimatedTotal)}.`,
+      "I will pick up the order from your shop.",
+      "Please confirm my order and final total.",
+    ];
+  }
+
+  const location = fulfilment?.location;
+
+  if (!location) {
+    return [
+      `Estimated total before delivery: ${formatPrice(estimatedTotal)}.`,
+      "For delivery, I will share my location here so you can confirm the delivery fee and add it to my final total.",
+      "Please confirm delivery availability and my final total.",
+    ];
+  }
+
+  const note = fulfilment.note?.trim();
+  const lines = [
+    `Deliver to: ${note ? `${note}, ${location.label}` : location.label}.`,
+    // No full stop after the link, so WhatsApp keeps it clickable.
+    `Location pin: https://www.google.com/maps?q=${location.lat.toFixed(6)},${location.lng.toFixed(6)}`,
+  ];
+
+  if (fulfilment.fee !== undefined && fulfilment.distanceKm !== undefined) {
+    lines.push(
+      `Delivery fee (${fulfilment.distanceKm} km by road): ${formatPrice(fulfilment.fee)}.`,
+      `Estimated total with delivery: ${formatPrice(estimatedTotal + fulfilment.fee)}.`,
+      "Please confirm delivery availability and my final total.",
+    );
+  } else if (fulfilment.distanceKm !== undefined) {
+    lines.push(
+      `Estimated total before delivery: ${formatPrice(estimatedTotal)}.`,
+      `The address is about ${fulfilment.distanceKm} km away by road. Please let me know if you can deliver there and the delivery fee.`,
+    );
+  } else {
+    lines.push(
+      `Estimated total before delivery: ${formatPrice(estimatedTotal)}.`,
+      "Please confirm the delivery fee for this location and my final total.",
+    );
+  }
+
+  return lines;
+}
+
 export function createWebsiteOrderMessage(product: {
   name: string;
   price: number;
-}, frameSize?: string, bouquetSize?: string) {
+}, frameSize?: string, bouquetSize?: string, fulfilment?: OrderFulfilment) {
   const selectedFrame = photoFrameOptions.find((frame) => frame.size === frameSize);
   const selectedBouquet = flowerBouquetOptions.find(
     (bouquet) => bouquet.size === bouquetSize,
@@ -72,12 +130,10 @@ export function createWebsiteOrderMessage(product: {
         : "",
       `Subtotal: ${formatPrice(subtotal)}.`,
       `Website discount (${WEBSITE_DISCOUNT_PERCENTAGE}% on cake only): -${formatPrice(discount)}.`,
-      `Estimated total before delivery: ${formatPrice(estimatedTotal)}.`,
       selectedFrame
         ? "I will send the photo for the frame here on WhatsApp."
         : "",
-      "For delivery, I will share my location here so you can confirm the delivery fee and add it to my final total.",
-      "Please confirm delivery availability and my final total.",
+      ...getFulfilmentLines(fulfilment, estimatedTotal),
     ]
       .filter(Boolean)
       .join(" "),
