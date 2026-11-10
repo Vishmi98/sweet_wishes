@@ -1,9 +1,9 @@
 import type { NextRequest } from "next/server";
 
 import { getDeliveryQuote, isInSriLanka, type DeliveryQuote } from "@/constants/delivery";
-import { getRoadDistance } from "@/lib/openroute";
+import { getRoadDistance } from "@/lib/google-maps";
 
-// About 11 m precision: close enough for pricing, and nearby pins share a cache entry.
+// About 11 m precision: plenty for pricing.
 function roundCoordinate(value: number) {
   return Math.round(value * 10_000) / 10_000;
 }

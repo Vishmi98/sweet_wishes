@@ -1,3 +1,9 @@
+import {
+  DELIVERY_FIRST_KM_FEE,
+  DELIVERY_FREE_KM,
+  DELIVERY_PER_KM_FEE,
+} from "@/constants/delivery";
+
 export const WEBSITE_DISCOUNT_PERCENTAGE = 10;
 
 export const photoFrameOptions = [
@@ -42,6 +48,18 @@ export function formatPrice(price: number) {
   }).format(price);
 }
 
+export function formatDeliveryFee(fee: number) {
+  return fee === 0 ? "Free" : formatPrice(fee);
+}
+
+export function describeDeliveryPricing() {
+  return `Delivery is free within ${DELIVERY_FREE_KM} km by road. Beyond that, it's ${formatPrice(
+    DELIVERY_FIRST_KM_FEE,
+  )} up to ${DELIVERY_FREE_KM + 1} km, then ${formatPrice(
+    DELIVERY_PER_KM_FEE,
+  )} for each extra km (rounded to the nearest km).`;
+}
+
 export const GENERAL_WEBSITE_ORDER_MESSAGE = encodeURIComponent(
   "Hi Sweet Wishes! I'd like to place an order through your website and use the 10% website discount. Please help me with my order.",
 );
@@ -53,7 +71,7 @@ export type OrderFulfilment =
       location?: { lat: number; lng: number; label: string };
       note?: string;
       distanceKm?: number;
-      // Only set when the address is inside the delivery area.
+      // Only set once the delivery fee has been calculated. 0 means free delivery.
       fee?: number;
     };
 
@@ -85,14 +103,9 @@ function getFulfilmentLines(fulfilment: OrderFulfilment | undefined, estimatedTo
 
   if (fulfilment.fee !== undefined && fulfilment.distanceKm !== undefined) {
     lines.push(
-      `Delivery fee (${fulfilment.distanceKm} km by road): ${formatPrice(fulfilment.fee)}.`,
+      `Delivery fee (${fulfilment.distanceKm} km by road): ${formatDeliveryFee(fulfilment.fee)}.`,
       `Estimated total with delivery: ${formatPrice(estimatedTotal + fulfilment.fee)}.`,
       "Please confirm delivery availability and my final total.",
-    );
-  } else if (fulfilment.distanceKm !== undefined) {
-    lines.push(
-      `Estimated total before delivery: ${formatPrice(estimatedTotal)}.`,
-      `The address is about ${fulfilment.distanceKm} km away by road. Please let me know if you can deliver there and the delivery fee.`,
     );
   } else {
     lines.push(

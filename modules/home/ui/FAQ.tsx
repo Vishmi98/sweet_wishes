@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-import { DELIVERY_BASE_FEE, DELIVERY_PER_KM_FEE, MAX_DELIVERY_DISTANCE_KM } from '@/constants/delivery'
-import { formatPrice } from '@/constants/pricing'
+import { describeDeliveryPricing } from '@/constants/pricing'
 
 const FAQ = () => {
     return (
@@ -68,12 +67,9 @@ const FAQ = () => {
                             <span className="font-sans text-2xl font-light text-rose-dark transition-transform group-open:rotate-45" aria-hidden="true">+</span>
                         </summary>
                         <p className="max-w-[600px] pb-5 pr-8 text-[11px] leading-[1.8] text-[#766c68]">
-                            Yes. Pickup from our shop is free, and we deliver up to{' '}
-                            {MAX_DELIVERY_DISTANCE_KM} km away. Delivery is{' '}
-                            {formatPrice(DELIVERY_BASE_FEE)} for the first km and{' '}
-                            {formatPrice(DELIVERY_PER_KM_FEE)} for each extra km by road.
-                            Set your location on a cake&apos;s page to see the fee before
-                            you order.
+                            Yes. Pickup from our shop is free, and we deliver island-wide.{' '}
+                            {describeDeliveryPricing()} Set your location on a cake&apos;s
+                            page to see the fee before you order.
                         </p>
                     </details>
 

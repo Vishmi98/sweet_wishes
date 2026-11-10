@@ -19,8 +19,6 @@ function isDeliveryQuote(value: unknown): value is DeliveryQuote {
   switch (quote.status) {
     case "ok":
       return typeof quote.distanceKm === "number" && typeof quote.fee === "number";
-    case "out_of_range":
-      return typeof quote.distanceKm === "number";
     case "no_road":
       return true;
     default:
@@ -34,9 +32,12 @@ export function useDeliveryQuote(location: LatLng | null): DeliveryQuoteState {
   const key =
     location && inSriLanka ? `${location.lat.toFixed(5)},${location.lng.toFixed(5)}` : null;
   const [result, setResult] = useState<{ key: string; state: DeliveryQuoteState } | null>(null);
+  const resultKey = result?.key;
 
   useEffect(() => {
-    if (!key) return;
+    // Each quote is a paid Google request, so don't ask again for a pin we already have
+    // (for example when Next.js shows this page again after navigating back).
+    if (!key || key === resultKey) return;
 
     const [lat, lng] = key.split(",");
     const controller = new AbortController();
@@ -58,7 +59,7 @@ export function useDeliveryQuote(location: LatLng | null): DeliveryQuoteState {
       });
 
     return () => controller.abort();
-  }, [key]);
+  }, [key, resultKey]);
 
   if (!location) return { status: "idle" };
   if (!inSriLanka) return { status: "outside_sri_lanka" };

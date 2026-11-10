@@ -5,14 +5,15 @@ import { useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 
 import {
-  DELIVERY_BASE_FEE,
-  DELIVERY_PER_KM_FEE,
-  MAX_DELIVERY_DISTANCE_KM,
+  DELIVERY_FIRST_KM_FEE,
+  DELIVERY_FREE_KM,
   type DeliveryLocation,
 } from "@/constants/delivery";
 import {
   createWebsiteOrderMessage,
+  describeDeliveryPricing,
   flowerBouquetOptions,
+  formatDeliveryFee,
   formatPrice,
   getDiscountedPrice,
   photoFrameOptions,
@@ -35,7 +36,7 @@ const fulfilmentOptions: { type: FulfilmentType; label: string; detail: string }
   {
     type: "delivery",
     label: "Delivery",
-    detail: `${formatPrice(DELIVERY_BASE_FEE)} first km + ${formatPrice(DELIVERY_PER_KM_FEE)}/km`,
+    detail: `Free within ${DELIVERY_FREE_KM} km, then from ${formatPrice(DELIVERY_FIRST_KM_FEE)}`,
   },
   { type: "pickup", label: "Pickup", detail: "From our shop, no fee" },
 ];
@@ -67,8 +68,7 @@ export default function ProductOrderOptions({ cake }: ProductOrderOptionsProps) 
         type: "delivery",
         location: deliveryLocation ?? undefined,
         note: addressNote,
-        distanceKm:
-          quote.status === "ok" || quote.status === "out_of_range" ? quote.distanceKm : undefined,
+        distanceKm: quote.status === "ok" ? quote.distanceKm : undefined,
         fee: deliveryFee ?? undefined,
       }
     : { type: "pickup" };
@@ -204,7 +204,7 @@ export default function ProductOrderOptions({ cake }: ProductOrderOptionsProps) 
         {isDelivery ? (
           <p className="mt-2 flex justify-between gap-3 text-[10px] leading-[1.6] text-[#74645f]">
             <span>Delivery{deliveryFee !== null && quote.status === "ok" ? ` (${quote.distanceKm} km)` : ""}</span>
-            <span>{deliveryFee !== null ? formatPrice(deliveryFee) : "To be confirmed"}</span>
+            <span>{deliveryFee !== null ? formatDeliveryFee(deliveryFee) : "To be confirmed"}</span>
           </p>
         ) : (
           <p className="mt-2 flex justify-between gap-3 text-[10px] leading-[1.6] text-[#74645f]">
@@ -221,12 +221,10 @@ export default function ProductOrderOptions({ cake }: ProductOrderOptionsProps) 
         <p className="mt-[10px] block text-[9px] text-[#938680]">
           {!isDelivery &&
             "Pick up your order from our shop in Ambalangoda. No delivery fee."}
-          {isDelivery &&
-            deliveryFee !== null &&
-            `Delivery is ${formatPrice(DELIVERY_BASE_FEE)} for the first km and ${formatPrice(DELIVERY_PER_KM_FEE)} for each extra km by road.`}
+          {isDelivery && deliveryFee !== null && describeDeliveryPricing()}
           {isDelivery &&
             deliveryFee === null &&
-            `Delivery fee isn't included yet. Set your location above (we deliver up to ${MAX_DELIVERY_DISTANCE_KM} km), or share it on WhatsApp and we'll confirm the fee.`}
+            "Delivery fee isn't included yet. Set your location above (we deliver island-wide), or share it on WhatsApp and we'll confirm the fee."}
           {" "}Starting-price estimate. We&apos;ll confirm the final price on WhatsApp.
           {selectedFrame && " Send us your photo in the WhatsApp chat."}
         </p>

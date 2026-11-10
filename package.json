@@ -9,20 +9,19 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@vis.gl/react-google-maps": "^1.10.2",
     "crypto-js": "^4.2.0",
-    "leaflet": "^1.9.4",
     "mongoose": "^9.11.1",
     "next": "16.4.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-icons": "^5.7.0",
-    "react-leaflet": "^5.0.0",
     "react-multi-carousel": "^2.8.6"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
     "@types/crypto-js": "^4.2.2",
-    "@types/leaflet": "^1.9.22",
+    "@types/google.maps": "^3.66.9",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
