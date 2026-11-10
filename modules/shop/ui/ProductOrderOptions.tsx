@@ -9,12 +9,14 @@ import {
   flowerBouquetOptions,
   formatPrice,
   getDiscountedPrice,
+  isCakeDiscounted,
   photoFrameOptions,
   WEBSITE_DISCOUNT_PERCENTAGE,
 } from "@/constants/pricing";
 
 type ProductOrderOptionsProps = {
   cake: {
+    slug: string;
     name: string;
     price: number;
   };
@@ -28,17 +30,18 @@ export default function ProductOrderOptions({ cake }: ProductOrderOptionsProps) 
   const selectedBouquet = flowerBouquetOptions.find(
     (bouquet) => bouquet.size === bouquetSize,
   );
+  const hasDiscount = isCakeDiscounted(cake.slug);
   const subtotal =
     cake.price + (selectedFrame?.price ?? 0) + (selectedBouquet?.price ?? 0);
-  const discountAmount = cake.price - getDiscountedPrice(cake.price);
+  const discountAmount = cake.price - getDiscountedPrice(cake.price, hasDiscount);
   const discountedTotal = subtotal - discountAmount;
   const orderMessage = createWebsiteOrderMessage(cake, frameSize, bouquetSize);
 
   return (
     <div className="mt-7">
       <p className="mb-5 text-[11px] leading-[1.7] text-[#827671]">
-        Make it an extra-special gift. Add a photo frame, a fresh flower bouquet,
-        or both.
+        Personalize your order with optional gifts. Your selections and a clear
+        price breakdown will be included in the WhatsApp message.
       </p>
 
       <fieldset className="mb-5 min-w-0 border-0 p-0">
@@ -103,8 +106,22 @@ export default function ProductOrderOptions({ cake }: ProductOrderOptionsProps) 
         </div>
       </fieldset>
 
-      <div className="my-[23px] mt-[23px] mb-[17px] bg-cream p-4" aria-live="polite">
-        <p className="flex justify-between gap-3 text-[10px] leading-[1.6] text-[#74645f]"><span>{cake.name} (starting price)</span><span>{formatPrice(cake.price)}</span></p>
+      <div className="my-[23px] mt-[23px] mb-[17px] border border-line bg-white p-4 shadow-[0_8px_24px_rgba(53,42,41,.045)] max-[400px]:p-3" aria-live="polite">
+        <div className="mb-4 flex items-center justify-between gap-3 border-b border-line pb-3">
+          <div>
+            <p className="m-0 text-[9px] font-semibold uppercase tracking-[.12em] text-[#827671]">Your order summary</p>
+            <p className="mt-1 mb-0 text-[9px] text-[#938680]">Starting-price estimate</p>
+          </div>
+          {hasDiscount && (
+            <span className="whitespace-nowrap bg-[#edf5ef] px-2 py-1 text-[9px] font-semibold text-[#3f7963]">
+              {WEBSITE_DISCOUNT_PERCENTAGE}% off selected cake
+            </span>
+          )}
+        </div>
+        <p className="flex justify-between gap-3 text-[10px] leading-[1.6] text-[#74645f]">
+          <span className="min-w-0">{cake.name} <span className="text-[#938680]">(cake starting price)</span></span>
+          <span className="whitespace-nowrap">{formatPrice(cake.price)}</span>
+        </p>
         {selectedFrame && (
           <p className="mt-2 flex justify-between gap-3 text-[10px] leading-[1.6] text-[#74645f]">
             <span>{selectedFrame.size}&quot; photo frame</span>
@@ -113,23 +130,24 @@ export default function ProductOrderOptions({ cake }: ProductOrderOptionsProps) 
         )}
         {selectedBouquet && (
           <p className="mt-2 flex justify-between gap-3 text-[10px] leading-[1.6] text-[#74645f]">
-            <span>{selectedBouquet.size} flower bouquet</span>
+            <span>{selectedBouquet.imageAlt}</span>
             <span>{formatPrice(selectedBouquet.price)}</span>
           </p>
         )}
-        <p className="mt-[13px] flex justify-between gap-3 border-t border-line pt-3 text-[10px] leading-[1.6] text-[#74645f]"><span>Subtotal</span><span>{formatPrice(subtotal)}</span></p>
-        <p className="mt-2 flex justify-between gap-3 text-[10px] leading-[1.6] text-[#3f7963]">
-          <span>Website discount ({WEBSITE_DISCOUNT_PERCENTAGE}% on cake)</span>
-          <span>-{formatPrice(discountAmount)}</span>
+        <p className="mt-[13px] flex justify-between gap-3 border-t border-line pt-3 text-[10px] leading-[1.6] text-[#74645f]"><span>Subtotal <span className="text-[#938680]">(before discount)</span></span><span className="whitespace-nowrap">{formatPrice(subtotal)}</span></p>
+        {hasDiscount && (
+          <p className="mt-2 flex justify-between gap-3 text-[10px] leading-[1.6] font-medium text-[#3f7963]">
+            <span>{WEBSITE_DISCOUNT_PERCENTAGE}% discount on cake only</span>
+            <span className="whitespace-nowrap">−{formatPrice(discountAmount)}</span>
+          </p>
+        )}
+        <p className="mt-3 flex items-baseline justify-between gap-3 border-t border-[#d8c9c0] pt-3 font-[Georgia,Times_New_Roman,serif] text-base text-ink">
+          <strong className="font-normal">Estimated total</strong>
+          <strong className="whitespace-nowrap text-lg font-semibold text-rose-dark">{formatPrice(discountedTotal)}</strong>
         </p>
-        <p className="mt-3 flex justify-between gap-3 border-t border-[#d8c9c0] pt-3 font-[Georgia,Times_New_Roman,serif] text-base text-ink">
-          <strong className="font-normal">Estimated total before delivery</strong>
-          <strong className="whitespace-nowrap font-normal text-rose-dark">{formatPrice(discountedTotal)}</strong>
-        </p>
-        <p className="mt-[10px] block text-[9px] text-[#938680]">
-          Delivery fee isn&apos;t included. Share your location on WhatsApp so we can confirm the fee and add it to your final total.
-          {" "}Starting-price estimate. We&apos;ll confirm the final price on WhatsApp.
-          {selectedFrame && " Send us your photo in the WhatsApp chat."}
+        <p className="mt-3 border-t border-dashed border-line pt-3 text-[9px] leading-[1.7] text-[#827671]">
+          Delivery isn&apos;t included. We&apos;ll confirm the final price after checking your location and cake details.
+          {selectedFrame && " Send your frame photo in the WhatsApp chat."}
         </p>
       </div>
 
@@ -146,7 +164,7 @@ export default function ProductOrderOptions({ cake }: ProductOrderOptionsProps) 
         />
       </a>
       <p className="mt-[10px] text-center text-[9px] text-[#938680]">
-        Your gift selections and estimated total before delivery will be included in the message.
+        WhatsApp opens with your cake, selected gifts, discount (if eligible), and estimated total clearly listed.
       </p>
     </div>
   );

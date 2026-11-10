@@ -1,91 +1,79 @@
-export type ProductReview = {
+export type CustomerReview = {
+  orderNumber: string;
   name: string;
   date: string;
   rating: number;
   title: string;
   comment: string;
-  isExample: boolean;
+  productName: string;
+  isSample: boolean;
 };
 
-export const productReviews: Record<string, ProductReview[]> = {
-  "birthday-motorcycle-cake": [
-    {
-      name: "Sample reviewer",
-      date: "Preview",
-      rating: 5,
-      title: "A fun birthday surprise",
-      comment:
-        "Sample review text: the custom theme made this cake feel personal, and everyone loved sharing it.",
-      isExample: false,
-    },
-    {
-      name: "Sample reviewer",
-      date: "Preview",
-      rating: 4,
-      title: "Lovely details",
-      comment:
-        "Sample review text: the decorations were a lovely finishing touch for a special celebration.",
-      isExample: false,
-    },
-  ],
-  "pink-flower-birthday-cake": [
-    {
-      name: "Sample reviewer",
-      date: "Preview",
-      rating: 5,
-      title: "So pretty for the occasion",
-      comment:
-        "Sample review text: the soft pink flowers made a beautiful centrepiece for our birthday table.",
-      isExample: false,
-    },
-    {
-      name: "Sample reviewer",
-      date: "Preview",
-      rating: 4,
-      title: "A sweet celebration cake",
-      comment:
-        "Sample review text: the cake looked lovely and was a delightful treat to share.",
-      isExample: false,
-    },
-  ],
-  "blue-dad-celebration-cake": [
-    {
-      name: "Sample reviewer",
-      date: "Preview",
-      rating: 5,
-      title: "A thoughtful surprise",
-      comment:
-        "Sample review text: the personalized design helped make our family celebration feel extra special.",
-      isExample: false,
-    },
-    {
-      name: "Sample reviewer",
-      date: "Preview",
-      rating: 4,
-      title: "Personal and delicious",
-      comment:
-        "Sample review text: we loved the custom message and enjoyed sharing the cake together.",
-      isExample: false,
-    },
-  ],
-  "chocolate-cookie-drip-cake": [
-    {
-      name: "Sample reviewer",
-      date: "Preview",
-      rating: 5,
-      title: "A chocolate lover's dream",
-      comment:
-        "Sample review text: the chocolate toppings made this a fun and indulgent choice for dessert.",
-      isExample: false,
-    },
-    {
-      name: "Sample reviewer",
-      date: "Preview",
-      rating: 4,
-      title: "Perfect for sharing",
-      comment:
-        "Sample review text: everyone found a favorite topping, and it disappeared quickly from the table.",
-      isExample: false,
-    },
-  ],
-};
+export const customerReviews: CustomerReview[] = [
+  {
+    orderNumber: "SW-SAMPLE-1042",
+    name: "Amaya P.",
+    date: "October 18, 2026",
+    rating: 5,
+    title: "Made the birthday feel extra special",
+    comment:
+      "The cake looked beautiful, and the personalized details were exactly what we hoped for. It was the sweetest surprise of the day.",
+    productName: "Pink Flower Birthday Cake",
+    isSample: true,
+  },
+  {
+    orderNumber: "SW-SAMPLE-1038",
+    name: "Dilan R.",
+    date: "October 12, 2026",
+    rating: 5,
+    title: "A hit with all the chocolate lovers",
+    comment:
+      "Rich, delicious, and decorated so nicely. Everyone wanted to know where we got it!",
+    productName: "Chocolate Cookie Drip Cake",
+    isSample: true,
+  },
+  {
+    orderNumber: "SW-SAMPLE-1031",
+    name: "Nethmi S.",
+    date: "October 5, 2026",
+    rating: 5,
+    title: "Beautiful from the first look",
+    comment:
+      "The elegant finish made the cake a lovely centrepiece for our celebration. It tasted just as good as it looked.",
+    productName: "Classic White Bride-to-Be Cake",
+    isSample: true,
+  },
+  {
+    orderNumber: "SW-SAMPLE-1026",
+    name: "Kasun M.",
+    date: "September 28, 2026",
+    rating: 4,
+    title: "A fun surprise for a motorcycle fan",
+    comment:
+      "The theme came together wonderfully and made the birthday boy smile. The cake was fresh and enjoyable.",
+    productName: "Birthday Motorcycle Cake",
+    isSample: true,
+  },
+  {
+    orderNumber: "SW-SAMPLE-1019",
+    name: "Tharushi W.",
+    date: "September 19, 2026",
+    rating: 5,
+    title: "A lovely anniversary centrepiece",
+    comment:
+      "The cake was beautifully made and added a special touch to our anniversary dinner. We would happily order again.",
+    productName: "3rd Anniversary Celebration Cake",
+    isSample: true,
+  },
+  {
+    orderNumber: "SW-SAMPLE-1012",
+    name: "Ravindu J.",
+    date: "September 10, 2026",
+    rating: 5,
+    title: "Fresh, pretty, and delicious",
+    comment:
+      "The decorations were delicate and the cake was lovely to share with family. Ordering was easy too.",
+    productName: "Pink Flower Bento Cupcake Box",
+    isSample: true,
+  },
+];

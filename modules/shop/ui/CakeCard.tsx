@@ -3,7 +3,11 @@ import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
 
 import type { cakes } from "@/constants/data";
-import { formatPrice, getDiscountedPrice } from "@/constants/pricing";
+import {
+  formatPrice,
+  getDiscountedPrice,
+  isCakeDiscounted,
+} from "@/constants/pricing";
 
 type Cake = (typeof cakes)[number];
 
@@ -13,6 +17,8 @@ type CakeCardProps = {
 };
 
 export default function CakeCard({ cake, index }: CakeCardProps) {
+  const hasDiscount = isCakeDiscounted(cake.slug);
+
   return (
     <article className="group min-w-0">
       <div className="relative h-[clamp(190px,23vw,280px)] overflow-hidden bg-[#f1e8df] max-[1000px]:h-[320px] max-[700px]:h-[clamp(155px,49vw,260px)]">
@@ -38,8 +44,14 @@ export default function CakeCard({ cake, index }: CakeCardProps) {
           </h3>
         </div>
         <strong className="mt-0 flex flex-col items-end gap-[3px] whitespace-nowrap font-[Georgia,Times_New_Roman,serif] text-[13px] font-normal max-[700px]:mt-[13px] max-[700px]:text-xs">
-          <del className="font-sans text-[10px] text-[#938680]">{formatPrice(cake.price)}</del>
-          <span className="text-rose-dark font-semibold">{formatPrice(getDiscountedPrice(cake.price))}</span>
+          {hasDiscount ? (
+            <>
+              <del className="font-sans text-[10px] text-[#938680]">{formatPrice(cake.price)}</del>
+              <span className="text-rose-dark font-semibold">{formatPrice(getDiscountedPrice(cake.price, true))}</span>
+            </>
+          ) : (
+            <span>{formatPrice(cake.price)}</span>
+          )}
         </strong>
       </div>
       <p className="mt-2 mb-0 text-[9px] leading-[1.6] text-[#91847e] max-[700px]:mt-1.5 max-[700px]:text-[8px]">{cake.description}</p>

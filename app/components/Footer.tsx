@@ -146,7 +146,12 @@ export default function Footer() {
         {/* Footer Bottom */}
         <div className="mt-12 py-5 md:py-8 border-t border-[#F0EAE1] flex flex-col sm:flex-row items-center justify-between text-xs text-[#A37078] gap-2 md:gap-4">
           <span>© {currentYear} Sweet Wishes. All rights reserved.</span>
-          <span>Baked fresh, shared with love.</span>
+          <div className="flex items-center gap-4">
+            <Link href="/reviews" className="transition-colors hover:text-rose-dark">
+              Customer reviews
+            </Link>
+            <span>Baked fresh, shared with love.</span>
+          </div>
         </div>
       </div>
     </footer>

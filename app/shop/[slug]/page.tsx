@@ -6,11 +6,15 @@ import { Suspense } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 
 import { cakes } from "@/constants/data";
-import { formatPrice } from "@/constants/pricing";
+import {
+  formatPrice,
+  getDiscountedPrice,
+  isCakeDiscounted,
+  WEBSITE_DISCOUNT_PERCENTAGE,
+} from "@/constants/pricing";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import ProductOrderOptions from "@/modules/shop/ui/ProductOrderOptions";
-import ProductReviews from "@/modules/shop/ui/ProductReviews";
 import CakeCard from "@/modules/shop/ui/CakeCard";
 
 type CakePageProps = {
@@ -55,6 +59,7 @@ async function CakePageContent({ params }: CakePageProps) {
   const otherCakes = cakes
     .filter((item) => item.category === cake.category && item.slug !== cake.slug)
     .slice(0, 4);
+  const hasDiscount = isCakeDiscounted(cake.slug);
 
   return (
     <main>
@@ -84,7 +89,17 @@ async function CakePageContent({ params }: CakePageProps) {
             <p className="eyebrow mb-[15px]"><span /> {cake.category} · baked fresh</p>
             <h1 className="m-0 font-[Georgia,Times_New_Roman,serif] text-[clamp(44px,4.8vw,62px)] font-normal leading-[1.05] tracking-[-.055em] max-[700px]:text-[48px]">{cake.name}</h1>
             <p className="mt-3 mb-[18px] font-[Georgia,Times_New_Roman,serif] text-base leading-[1.6] text-[#827671]">{cake.description}</p>
-            <strong className="font-[Georgia,Times_New_Roman,serif] text-3xl whitespace-nowrap font-semibold text-rose-dark">{formatPrice(cake.price)}</strong>
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              {hasDiscount && (
+                <del className="font-sans text-sm text-[#938680]">{formatPrice(cake.price)}</del>
+              )}
+              <strong className="font-[Georgia,Times_New_Roman,serif] text-3xl whitespace-nowrap font-semibold text-rose-dark">
+                {formatPrice(getDiscountedPrice(cake.price, hasDiscount))}
+              </strong>
+              {hasDiscount && (
+                <span className="text-[10px] text-[#3f7963]">{WEBSITE_DISCOUNT_PERCENTAGE}% off</span>
+              )}
+            </div>
             <div className="my-[23px] h-px bg-line" />
             <p className="mb-[25px] text-xs leading-[1.9] text-[#766c68]">{cake.story}</p>
 
@@ -101,8 +116,6 @@ async function CakePageContent({ params }: CakePageProps) {
           </div>
         </div>
       </section>
-
-      <ProductReviews productSlug={cake.slug} />
 
       <section className="bg-cream px-[10.2%] pt-[68px] pb-[20px] max-[1000px]:px-[7%] max-[700px]:px-[7%] max-[700px]:pt-[54px] max-[700px]:pb-[65px]">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-[30px] gap-4">

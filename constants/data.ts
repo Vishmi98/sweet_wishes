@@ -5,9 +5,9 @@ export const cakes = [
         slug: "birthday-motorcycle-cake",
         name: "Birthday Motorcycle Cake",
         category: "Birthday Cakes",
-        description: "1kg Vanilla cake · buttercream frosting · motorcycle theme",
+        description: "1kg Butter cake · buttericing frosting · motorcycle theme",
         story: "A fun and personalized birthday cake featuring a detailed motorcycle topper, vibrant green accents, and a custom age design. Perfect for motorcycle lovers and adventurous celebrations.",
-        ingredients: ["Vanilla sponge", "Buttercream frosting", "Fondant decorations"],
+        ingredients: ["Butter cake", "Buttericing frosting", "Fondant decorations"],
         price: 6000,
         image: "/3.jpeg",
     },
@@ -15,9 +15,9 @@ export const cakes = [
         slug: "pink-flower-birthday-cake",
         name: "Pink Flower Birthday Cake",
         category: "Birthday Cakes",
-        description: "1kg Vanilla cake · pink buttercream · floral decoration",
-        story: "A charming pink celebration cake topped with a beautiful handcrafted flower. Its soft pastel design makes it a lovely choice for elegant and joyful birthday moments.",
-        ingredients: ["Vanilla sponge", "Pink buttercream", "Fondant decorations"],
+        description: "1kg Butter cake · pink buttericing · fresh floral decoration",
+        story: "A charming pink celebration cake topped with a beautiful fresh flower. Its soft pastel design makes it a lovely choice for elegant and joyful birthday moments.",
+        ingredients: ["Butter cake", "Pink buttericing", "Fondant decorations", "Fresh flower"],
         price: 6000,
         image: "/4.jpeg",
     },
@@ -25,9 +25,9 @@ export const cakes = [
         slug: "blue-dad-celebration-cake",
         name: "Blue Dad Celebration Cake",
         category: "Birthday Cakes",
-        description: "1kg Vanilla cake · blue buttercream · personalized Dad design",
-        story: "A heartfelt celebration cake decorated with rich blue buttercream and a personalized 'DAD' message. A thoughtful centerpiece for celebrating a special father figure.",
-        ingredients: ["Vanilla sponge", "Blue buttercream", "Fondant decorations"],
+        description: "1kg Butter cake · blue buttericing · personalized Dad design",
+        story: "A heartfelt celebration cake decorated with rich blue buttericing and a personalized 'DAD' message. A thoughtful centerpiece for celebrating a special father figure.",
+        ingredients: ["Butter cake", "Blue buttericing", "Fondant decorations"],
         price: 5800,
         image: "/5.jpeg",
     },
@@ -37,7 +37,7 @@ export const cakes = [
         category: "Birthday Cakes",
         description: "1kg Chocolate cake · chocolate ganache · cookies & chocolate toppings",
         story: "A rich and indulgent chocolate cake finished with smooth chocolate drip, crunchy cookies, chocolate bars, and delicious bite-sized treats. Made for serious chocolate lovers.",
-        ingredients: ["Chocolate sponge", "Chocolate buttercream", "Chocolate ganache", "Assorted cookies", "Chocolate toppings"],
+        ingredients: ["Chocolate cake", "Chocolate buttericing", "Chocolate ganache", "Assorted cookies", "Chocolate toppings"],
         price: 7000,
         image: "/6.png",
     },
@@ -46,12 +46,12 @@ export const cakes = [
         name: "Chocolate Biscuits Cupcakes",
         category: "Cup Cakes",
         description:
-            "6 Chocolate cupcakes · vanilla buttercream · chocolate biscuits decoration",
+            "6 Chocolate cupcakes · vanilla buttericing · chocolate biscuits decoration",
         story:
-            "Soft chocolate cupcakes topped with creamy vanilla buttercream, chocolate chips, and a delicious chocolate biscuits decoration. A fun and indulgent treat for birthdays, parties, or everyday sweet cravings.",
+            "Soft chocolate cupcakes topped with creamy vanilla buttericing, chocolate chips, and a delicious chocolate biscuits decoration. A fun and indulgent treat for birthdays, parties, or everyday sweet cravings.",
         ingredients: [
-            "Chocolate sponge",
-            "Vanilla buttercream",
+            "Chocolate cake",
+            "Vanilla buttericing",
             "Chocolate chips",
             "Chocolate biscuits decorations",
         ],
@@ -63,12 +63,12 @@ export const cakes = [
         name: "Panda Theme Cupcakes",
         category: "Cup Cakes",
         description:
-            "12 Vanilla cupcakes · buttercream frosting · cute panda decorations",
+            "12 Vanilla cupcakes · buttericing frosting · cute panda decorations",
         story:
-            "Adorable panda-themed cupcakes decorated with smooth white buttercream and playful black panda details. A fun choice for children's birthdays, themed parties, and special celebrations.",
+            "Adorable panda-themed cupcakes decorated with smooth white buttericing and playful black panda details. A fun choice for children's birthdays, themed parties, and special celebrations.",
         ingredients: [
-            "Vanilla sponge",
-            "Vanilla buttercream",
+            "Butter cake",
+            "Vanilla buttericing",
             "Fondant decorations",
         ],
         price: 2400,
@@ -79,12 +79,12 @@ export const cakes = [
         name: "Classic White Bride-to-Be Cake",
         category: "Anniversary/ Wedding Cakes",
         description:
-            "1kg Elegant vanilla cake · white buttercream · gold Bride & Groom topper",
+            "1kg butter cake · white buttericing · gold Bride to be topper",
         story:
-            "A timeless white celebration cake finished with elegant buttercream detailing and a beautiful gold Bride & Groom topper. A sophisticated centerpiece for weddings and romantic celebrations.",
+            "A timeless white celebration cake finished with elegant buttericing detailing and a beautiful gold Bride to be topper. A sophisticated centerpiece for weddings and romantic celebrations.",
         ingredients: [
-            "Vanilla sponge",
-            "White buttercream",
+            "Butter cake",
+            "White buttericing",
             "Sprinkles",
             "Gold cake topper",
         ],
@@ -96,13 +96,13 @@ export const cakes = [
         name: "Pink Flower Bento Cupcake Box",
         category: "Cup Cakes",
         description:
-            "Vanilla bento cake and cupcakes · pink buttercream · buttercream flower decorations",
+            "Vanilla bento cake and cupcakes · pink buttericing · buttericing flower decorations",
         story:
-            "A beautiful box of cupcakes decorated with delicate pink buttercream flowers. Their elegant floral design makes them perfect for birthdays, bridal celebrations, gifts, and special occasions.",
+            "A beautiful box of cupcakes decorated with delicate pink buttericing flowers. Their elegant floral design makes them perfect for birthdays, bridal celebrations, gifts, and special occasions.",
         ingredients: [
-            "Vanilla sponge",
-            "Pink buttercream",
-            "Buttercream flowers",
+            "Butter cake",
+            "Pink buttericing",
+            "Buttericing flowers",
             "Sprinkles",
         ],
         price: 2200,
@@ -118,7 +118,7 @@ export const cakes = [
         story:
             "A beautiful celebration cake decorated with fresh strawberries and creamy frosting, finished with a charming basket-inspired chocolate design. A delicious choice for birthdays and strawberry lovers.",
         ingredients: [
-            "Chocolate sponge",
+            "Chocolate cake",
             "Fresh strawberries",
             "Chocolate cream frosting",
             "KitKats",
@@ -132,12 +132,12 @@ export const cakes = [
         name: "Golden 19th Birthday Cake",
         category: "Birthday Cakes",
         description:
-            "1.5kg Vanilla cake · buttercream frosting · elegant gold 19th birthday topper",
+            "1.5kg butter cake · buttericing frosting · elegant gold 19th birthday topper",
         story:
-            "An elegant birthday cake created to celebrate 19 wonderful years. Finished with smooth buttercream frosting and a delicate gold birthday topper for a timeless and romantic presentation.",
+            "An elegant birthday cake created to celebrate 19 wonderful years. Finished with smooth buttericing frosting and a delicate gold birthday topper for a timeless and romantic presentation.",
         ingredients: [
-            "Vanilla sponge",
-            "White buttercream",
+            "Butter cake",
+            "White buttericing",
             "Gold cake topper",
             "Wafer papers"
         ],
@@ -150,12 +150,12 @@ export const cakes = [
         name: "3rd Anniversary Celebration Cake",
         category: "Anniversary/ Wedding Cakes",
         description:
-            "1.5kg Vanilla cake · white buttercream · red heart fondant decorations · 3rd anniversary design",
+            "1.5kg butter cake · white buttericing · red heart fondant decorations · 3rd anniversary design",
         story:
-            "A romantic anniversary cake featuring smooth white buttercream, delicate red heart decorations, and a personalized 3rd anniversary message. Perfect for celebrating a beautiful relationship milestone.",
+            "A romantic anniversary cake featuring smooth white buttericing, delicate red heart decorations, and a personalized 3rd anniversary message. Perfect for celebrating a beautiful relationship milestone.",
         ingredients: [
-            "Vanilla sponge",
-            "White buttercream",
+            "Butter cake",
+            "White buttericing",
             "Red fondant hearts",
         ],
         price: 5800,
@@ -166,12 +166,12 @@ export const cakes = [
         name: "Mr & Mrs Romantic Cake",
         category: "Anniversary/ Wedding Cakes",
         description:
-            "1.5kg Vanilla cake · white buttercream · red roses · elegant Mr & Mrs topper",
+            "1.5kg butter cake · white buttericing · red roses · elegant Mr & Mrs topper",
         story:
-            "An elegant romantic cake designed for weddings and anniversaries, featuring smooth white buttercream, beautiful red roses, and a classic Mr & Mrs topper. A timeless centerpiece for celebrating love and togetherness.",
+            "An elegant romantic cake designed for weddings and anniversaries, featuring smooth white buttericing, beautiful red roses, and a classic Mr & Mrs topper. A timeless centerpiece for celebrating love and togetherness.",
         ingredients: [
-            "Vanilla sponge",
-            "White buttercream",
+            "Butter cake",
+            "White buttericing",
             "Fresh red roses",
             "Cake topper",
         ],
@@ -184,12 +184,12 @@ export const cakes = [
         name: "23rd Birthday Tattoo Cake",
         category: "Birthday Cakes",
         description:
-            "1.5kg Vanilla cake · buttercream frosting · tattoo theme · personalized 23rd birthday design",
+            "1.5kg butter cake · buttericing frosting · tattoo theme · personalized 23rd birthday design",
         story:
             "A fun personalized birthday cake created for a tattoo enthusiast. Featuring a bold tattoo-inspired design, crossed tattoo needles, and a custom 23rd birthday message, making it perfect for a memorable celebration.",
         ingredients: [
-            "Vanilla sponge",
-            "Buttercream frosting",
+            "Butter cake",
+            "Buttericing frosting",
             "Fondant decorations",
             "Non-edible cake topper",
         ],
@@ -202,12 +202,12 @@ export const cakes = [
         name: "Nippa Shop Opening Celebration Cake",
         category: "Custom Cakes",
         description:
-            "1kg Vanilla cake with dummy · white buttercream · personalized NIPPA design · gold decorations",
+            "1kg Butter cake with dummy · white buttericing · personalized NIPPA design · gold decorations",
         story:
             "A stylish personalized birthday cake featuring a clean white finish, golden decorative accents, and a custom NIPPA birthday design. A sophisticated choice for celebrating someone special.",
         ingredients: [
-            "Vanilla sponge",
-            "White buttercream",
+            "Butter cake",
+            "White buttericing",
             "Fondant decorations",
             "Gold cake decorations",
             "Non-edible cake topper"
@@ -221,12 +221,12 @@ export const cakes = [
         name: "Rainbow Princess Birthday Cake",
         category: "Birthday Cakes",
         description:
-            "1kg Vanilla cake · pink buttercream · rainbow decorations · personalized birthday design",
+            "1kg Butter cake · pink buttericing · rainbow decorations · personalized birthday design",
         story:
             "A colorful and playful birthday cake designed for a magical celebration. Featuring soft pink frosting, a vibrant rainbow, clouds, colorful balloons, and a personalized name topper, making it perfect for a princess-themed birthday.",
         ingredients: [
-            "Vanilla sponge",
-            "Pink buttercream",
+            "Butter cake",
+            "Pink buttericing",
             "Fondant decorations",
             "Rainbow decorations",
             "Non-edible cake topper",
@@ -239,12 +239,12 @@ export const cakes = [
         name: "Bachelor Party Bum Cake",
         category: "Custom Cakes",
         description:
-            "1.5kg Vanilla cake · buttercream frosting · sculpted bum design · personalized name decoration",
+            "1.5kg butter cake · buttericing frosting · sculpted bum design · personalized name decoration",
         story:
-            "A fun and cheeky sculpted cake designed especially for a bachelor party. Featuring a perfectly shaped bum design, smooth buttercream detailing, and a personalized name decoration, this playful centerpiece is made to bring plenty of laughs to the celebration.",
+            "A fun and cheeky sculpted cake designed especially for a bachelor party. Featuring a perfectly shaped bum design, smooth buttericing detailing, and a personalized name decoration, this playful centerpiece is made to bring plenty of laughs to the celebration.",
         ingredients: [
-            "Vanilla sponge",
-            "Buttercream frosting",
+            "Butter cake",
+            "Buttericing frosting",
             "Fondant decorations",
             "Edible lettering",
         ],
@@ -260,8 +260,8 @@ export const cakes = [
         story:
             "A fun and indulgent birthday cake featuring a smooth vanilla finish, rich chocolate ganache drip, and plenty of chocolate treats. Finished with a Happy Birthday topper, making it a perfect choice for chocolate lovers.",
         ingredients: [
-            "Chocolate sponge",
-            "Vanilla buttercream",
+            "Chocolate cake",
+            "Vanilla buttericing",
             "Chocolate ganache",
             "Chocolate treats",
             "Chocolate toppings",
@@ -276,17 +276,73 @@ export const cakes = [
         name: "Dad & Mom Half-and-Half Cake",
         category: "Birthday Cakes",
         description:
-            "1kg Vanilla cake · blue and pink buttercream · personalized Dad & Mom design",
+            "1kg Butter cake · blue and pink buttericing · personalized Dad & Mom design",
         story:
             "A unique personalized celebration cake beautifully divided into blue and pink sides, representing Dad and Mom. Topped with a playful family-themed decoration, this colorful cake is perfect for celebrating two special people together.",
         ingredients: [
-            "Vanilla sponge",
-            "Blue buttercream",
-            "Pink buttercream",
+            "Butter cake",
+            "Blue buttericing",
+            "Pink buttericing",
             "Fondant decorations",
             "Personalized cake topper",
         ],
         price: 5800,
         image: "/22.jpeg",
+    },
+    {
+        slug: "my-wife-floral-birthday-cake",
+        name: "My Wife Floral Birthday Cake",
+        category: "Birthday Cakes",
+        description:
+            "1kg Butter cake · ivory buttericing · white spray roses · gold fondant lettering",
+        story:
+            "A beautiful and romantic birthday cake specially designed to celebrate a beloved wife. Featuring elegant ivory buttericing, delicate white spray roses, pearl decorations, and a personalized gold 'MY WIFE' message. A perfect choice for a memorable birthday celebration.",
+        ingredients: [
+            "Butter cake",
+            "Ivory buttericing",
+            "White spray rose decorations",
+            "Pearl sprinkles",
+            "Gold fondant lettering",
+            "Gold cake topper",
+        ],
+        price: 6500, 
+        image: "/23.png",
+    },
+    {
+        slug: "royal-crown-birthday-cake",
+        name: "Royal Crown Birthday Cake",
+        category: "Birthday Cakes",
+        description:
+            "1kg Butter cake · ivory buttericing · golden crown · butterfly decorations",
+        story:
+            "An elegant royal-themed birthday cake featuring smooth ivory buttericing, a beautiful golden jeweled crown, delicate butterflies, and a stunning gold Happy Birthday topper. Perfect for a princess-inspired birthday celebration.",
+        ingredients: [
+            "1kg Butter cake",
+            "Ivory buttericing",
+            "Golden crown",
+            "Butterfly decorations",
+            "Pearl sprinkles",
+            "Cake topper",
+        ],
+        price: 5800, 
+        image: "/24.png",
+    },
+    {
+        slug: "strawberry-chocolate-drip-birthday-cake",
+        name: "Strawberry Chocolate Drip Birthday Cake",
+        category: "Birthday Cakes",
+        description:
+            "1kg Chocolate cake · chocolate ganache drip · fresh strawberries · gold birthday topper",
+        story:
+            "A delicious and elegant birthday cake featuring smooth chocolate buttericing, rich chocolate ganache dripping down the sides, and fresh strawberries beautifully arranged on top and around the cake. Finished with a golden Happy Birthday topper, making it a perfect treat for chocolate and strawberry lovers.",
+        ingredients: [
+            "1kg Chocolate cake",
+            "1kg Chocolate buttericing",
+            "Chocolate ganache",
+            "Fresh strawberries",
+            "Gold cake topper",
+        ],
+        price: 6500, 
+        image: "/25.jpeg",
     },
 ];

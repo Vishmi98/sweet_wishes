@@ -24,7 +24,7 @@ export default function Home() {
         <div className="min-w-0 flex-1 max-[700px]:flex-[1_1_calc(100%-70px)]">
           <p className="eyebrow mb-[7px] text-line"><span /> A little thank-you from us</p>
           <h2 id="home-discount-heading" className="m-0 font-[Georgia,Times_New_Roman,serif] text-[clamp(24px,3vw,36px)] font-normal tracking-[-.04em] max-[700px]:text-[27px]">A sweeter order, <em className="font-normal text-[#f0b9b0]">10% off.</em></h2>
-          <p className="mt-[7px] mb-0 text-[10px] text-[#f1e4dc]">Enjoy 10% off every order placed through our website.</p>
+          <p className="mt-[7px] mb-0 text-[10px] text-[#f1e4dc]">Enjoy 10% off selected cakes when you order through our website.</p>
         </div>
         <Link className="button button-light shrink-0 max-[700px]:ml-[70px] max-[700px]:min-h-10" href="/shop">
           Find your favorite <BsArrowRight />

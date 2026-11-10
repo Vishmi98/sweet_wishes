@@ -41,9 +41,10 @@ const FAQ = () => {
                             <span className="font-sans text-2xl font-light text-rose-dark transition-transform group-open:rotate-45" aria-hidden="true">+</span>
                         </summary>
                         <p className="max-w-[600px] pb-5 pr-8 text-[11px] leading-[1.8] text-[#766c68]">
-                            The estimated total shows 10% off the listed cake starting
-                            price only. Selected gift add-ons are full price, and
-                            delivery is confirmed separately on WhatsApp.
+                            Selected cakes receive 10% off their listed starting
+                            price. Optional gifts and delivery are not discounted.
+                            The discount is shown on eligible cake pages and in your
+                            WhatsApp order estimate.
                         </p>
                     </details>
 
