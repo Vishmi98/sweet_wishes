@@ -6,12 +6,14 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { blogs } from "@/constants/blogs";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Stories from our kitchen | Sweet Wishes",
+export const metadata: Metadata = pageMetadata({
+  title: "Cake Ideas & Stories from our Kitchen",
   description:
-    "Read the Sweet Wishes journal for baking inspiration, celebration ideas, and little notes from our kitchen.",
-};
+    "Read the Sweet Wishes journal from Ambalangoda for cake ideas, celebration inspiration and little notes from our kitchen.",
+  path: "/blogs",
+});
 
 export default function BlogsPage() {
   const [featuredBlog, ...moreBlogs] = blogs;

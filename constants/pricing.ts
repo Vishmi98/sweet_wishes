@@ -1,11 +1,11 @@
 export const WEBSITE_DISCOUNT_PERCENTAGE = 10;
 
 export const DISCOUNTED_CAKE_SLUGS: readonly string[] = [
-  "birthday-motorcycle-cake",
-  "chocolate-cookie-drip-cake",
   "classic-white-bride-to-be-cake",
-  "strawberry-basket-celebration-cake",
   "3rd-anniversary-celebration-cake",
+  "mr-and-mrs-romantic-cake",
+  // "strawberry-basket-celebration-cake",
+  // "3rd-anniversary-celebration-cake",
 ];
 
 export function isCakeDiscounted(slug: string) {
@@ -42,7 +42,7 @@ export const flowerBouquetOptions = [
   {
     size: "Large1`",
     price: 2800,
-    image: "/b3.png",
+    image: "/b6.png",
     imageAlt: "Large mix flower bouquet",
   },
   {

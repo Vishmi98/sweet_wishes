@@ -1,5 +1,7 @@
 export const filters = ["All treats", "Birthday Cakes", "Cup Cakes", "Anniversary/ Wedding Cakes", "Custom Cakes"];
 
+export const NEXT_PUBLIC_SITE_URL = "https://sweetwishes.lk/";
+
 export const cakes = [
     {
         slug: "birthday-motorcycle-cake",
@@ -305,7 +307,7 @@ export const cakes = [
             "Gold fondant lettering",
             "Gold cake topper",
         ],
-        price: 6500, 
+        price: 6500,
         image: "/23.png",
     },
     {
@@ -324,7 +326,7 @@ export const cakes = [
             "Pearl sprinkles",
             "Cake topper",
         ],
-        price: 5800, 
+        price: 5800,
         image: "/24.png",
     },
     {
@@ -342,7 +344,32 @@ export const cakes = [
             "Fresh strawberries",
             "Gold cake topper",
         ],
-        price: 6500, 
+        price: 6500,
         image: "/25.jpeg",
+    },
+    {
+        slug: "lavender-floral-crown-birthday-cake",
+        name: "Lavender Floral Crown Birthday Cake",
+        category: "Birthday Cakes",
+        description:
+            "1kg Butter cake · vanilla buttericing · white and lavender artificial floral decorations · gold crown topper · edible gold leaf",
+
+        story:
+            "An elegant and charming birthday cake featuring a beautiful two-tone buttericing design with soft lavender buttericing on the upper tier and creamy ivory buttericing on the lower tier. Decorated with delicate white flowers, purple blossoms, edible pearls, and subtle gold leaf details. Finished with a beautiful golden crown and a Happy Birthday topper, creating a lovely royal-inspired celebration cake. A perfect choice for someone special.",
+
+        ingredients: [
+            "1kg Butter cake",
+            "Vanilla buttericing",
+            "Lavender-coloured buttericing",
+            "White floral decorations",
+            "Purple floral decorations",
+            "Edible pearls",
+            "Edible gold leaf",
+            "Gold crown topper",
+            "Happy Birthday topper",
+        ],
+
+        price: 6000,
+        image: "/26.jpeg",
     },
 ];

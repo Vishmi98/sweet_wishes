@@ -4,11 +4,18 @@ import Link from "next/link";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import CustomerReviews from "@/modules/reviews/ui/CustomerReviews";
+import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Customer Review Preview | Sweet Wishes",
-  description:
-    "Preview the Sweet Wishes customer review page with clearly labeled sample ratings and order references.",
+  ...pageMetadata({
+    title: "Customer Review Preview",
+    description:
+      "Preview the Sweet Wishes customer review page with clearly labeled sample ratings and order references.",
+    path: "/reviews",
+  }),
+  // Sample reviews only — keep out of search results (and out of app/sitemap.ts)
+  // until real customer reviews replace them.
+  robots: { index: false, follow: true },
 };
 
 export default function ReviewsPage() {

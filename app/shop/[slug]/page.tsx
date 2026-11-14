@@ -16,6 +16,8 @@ import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import ProductOrderOptions from "@/modules/shop/ui/ProductOrderOptions";
 import CakeCard from "@/modules/shop/ui/CakeCard";
+import JsonLd from "../../components/JsonLd";
+import { absoluteUrl, BUSINESS, pageMetadata } from "@/lib/site";
 
 type CakePageProps = {
   params: Promise<{ slug: string }>;
@@ -30,13 +32,16 @@ export async function generateMetadata({ params }: CakePageProps): Promise<Metad
   const cake = cakes.find((item) => item.slug === slug);
 
   if (!cake) {
-    return { title: "Cake not found | Sweet Wishes" };
+    return { title: "Cake not found", robots: { index: false } };
   }
 
-  return {
-    title: `${cake.name} | Sweet Wishes`,
+  return pageMetadata({
+    title: cake.name,
     description: cake.story,
-  };
+    path: `/shop/${cake.slug}`,
+    image: cake.image,
+    imageAlt: cake.name,
+  });
 }
 
 export default function CakePage({ params }: CakePageProps) {
@@ -60,9 +65,40 @@ async function CakePageContent({ params }: CakePageProps) {
     .filter((item) => item.category === cake.category && item.slug !== cake.slug)
     .slice(0, 4);
   const hasDiscount = isCakeDiscounted(cake.slug);
+  const cakeUrl = absoluteUrl(`/shop/${cake.slug}`);
+
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: cake.name,
+    image: absoluteUrl(cake.image),
+    description: cake.story,
+    category: cake.category,
+    brand: { "@type": "Brand", name: BUSINESS.name },
+    offers: {
+      "@type": "Offer",
+      url: cakeUrl,
+      price: Math.round(getDiscountedPrice(cake.price, hasDiscount)),
+      priceCurrency: "LKR",
+      availability: "https://schema.org/InStock",
+      seller: { "@id": absoluteUrl("/#bakery") },
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+      { "@type": "ListItem", position: 2, name: "Our cakes", item: absoluteUrl("/shop") },
+      { "@type": "ListItem", position: 3, name: cake.name, item: cakeUrl },
+    ],
+  };
 
   return (
     <main>
+      <JsonLd data={productJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <Navbar />
       <section className="px-[10.2%] pt-10 pb-[76px] max-[1000px]:px-[7%] max-[700px]:px-[7%] max-[700px]:pt-[30px] max-[700px]:pb-[54px]">
         <nav className="mb-9 flex flex-wrap items-center gap-[10px] text-[10px] text-[#938680] max-[700px]:mb-[25px] max-[700px]:gap-[7px] max-[700px]:text-[9px] [&_a:hover]:text-rose-dark" aria-label="Breadcrumb">

@@ -7,7 +7,7 @@ const Hero = () => {
     return (
         <section className="relative grid min-h-[548px] grid-cols-[.95fr_1.05fr] items-center gap-0 overflow-hidden bg-cream px-[10.2%] pt-[52px] pb-[85px] max-[1000px]:px-[8%] max-[700px]:grid-cols-1 max-[700px]:gap-[26px] max-[700px]:px-[7%] max-[700px]:pt-[54px] max-[700px]:pb-[76px]" id="home">
             <div className="relative z-[1] max-w-[500px] py-[7px] pb-[6px] max-[700px]:mx-auto max-[700px]:max-w-[540px]">
-                <p className="eyebrow"><span /> Baked for the lovely little moments</p>
+                <p className="eyebrow"><span /> Homemade cakes in Ambalangoda</p>
                 <h1 className="m-0 font-[Georgia,Times_New_Roman,serif] text-[clamp(46px,5.6vw,76px)] font-normal leading-[1.04] tracking-[-.055em] max-[1000px]:text-[58px] max-[700px]:text-[clamp(48px,12vw,66px)]">
                     A little slice<br />of <em className="font-normal text-rose">something lovely.</em>
                 </h1>

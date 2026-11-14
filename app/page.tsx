@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { BsArrowRight } from "react-icons/bs";
 import { HiSparkles } from "react-icons/hi";
 import { FaRegHeart } from "react-icons/fa";
@@ -11,6 +12,11 @@ import Hero from "@/modules/home/ui/Hero";
 import Categories from "@/modules/home/ui/Categories";
 import Story from "@/modules/home/ui/Story";
 import FAQ from "@/modules/home/ui/FAQ";
+
+// Title, description and share preview come from the root layout.
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (

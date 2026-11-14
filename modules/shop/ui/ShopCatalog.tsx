@@ -33,13 +33,13 @@ export default function ShopCatalog() {
           <h1 className="m-0 font-[Georgia,Times_New_Roman,serif] text-[clamp(44px,5.3vw,70px)] font-normal leading-[1.05] tracking-[-.055em] max-[700px]:text-[46px]">All the <em className="font-normal text-rose">good things.</em></h1>
         </div>
         <p className="hidden md:block mt-0 mb-[5px] max-w-[290px] text-[11px] leading-[1.8] text-[#827671] max-[700px]:mt-0 items-end">
-          From just-because cupcakes to the cake everyone remembers. Find the
-          one that feels like you.
+          From just-because cupcakes to the cake everyone remembers, homemade
+          in Ambalangoda. Find the one that feels like you.
         </p>
         <div className="flex md:hidden items-center justify-between gap-5">
           <p className="mt-0 mb-[5px] max-w-[290px] text-[11px] leading-[1.8] text-[#827671] max-[700px]:mt-0">
-            From just-because cupcakes to the cake everyone remembers. Find the
-            one that feels like you.
+            From just-because cupcakes to the cake everyone remembers, homemade
+            in Ambalangoda. Find the one that feels like you.
           </p>
           <span className="text-[10px] text-[#938680] md:hidden block">
             {String(visibleCakes.length).padStart(2, "0")} little treats

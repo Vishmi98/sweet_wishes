@@ -3,12 +3,14 @@ import type { Metadata } from "next";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import ShopCatalog from "@/modules/shop/ui/ShopCatalog";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "All Cakes & Treats | Sweet Wishes",
+export const metadata: Metadata = pageMetadata({
+  title: "Cakes & Cupcakes in Ambalangoda",
   description:
-    "Explore the Sweet Wishes collection of small-batch cakes, cupcakes, and handmade treats.",
-};
+    "Shop homemade birthday cakes, cupcakes, anniversary and wedding cakes, and custom cakes from Sweet Wishes in Ambalangoda. Delivering to Hikkaduwa, Balapitiya and Galle.",
+  path: "/shop",
+});
 
 export default function ShopPage() {
   return (

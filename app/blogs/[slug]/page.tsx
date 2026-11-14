@@ -7,6 +7,8 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { blogs } from "@/constants/blogs";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
+import JsonLd from "../../components/JsonLd";
+import { absoluteUrl, BUSINESS, pageMetadata, toIsoDate } from "@/lib/site";
 
 // 👇 Allows the route to block normally during navigation and fixes the params error
 export const instant = false;
@@ -24,13 +26,18 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
   const blog = blogs.find((item) => item.slug === slug);
 
   if (!blog) {
-    return { title: "Story not found | Sweet Wishes" };
+    return { title: "Story not found", robots: { index: false } };
   }
 
-  return {
-    title: `${blog.title} | Sweet Wishes`,
+  return pageMetadata({
+    title: blog.title,
     description: blog.excerpt,
-  };
+    path: `/blogs/${blog.slug}`,
+    image: blog.image,
+    imageAlt: blog.imageAlt,
+    type: "article",
+    publishedTime: toIsoDate(blog.date),
+  });
 }
 
 export default async function BlogPage({ params }: BlogPageProps) {
@@ -42,9 +49,25 @@ export default async function BlogPage({ params }: BlogPageProps) {
   }
 
   const relatedBlogs = blogs.filter((item) => item.slug !== blog.slug).slice(0, 2);
+  const blogUrl = absoluteUrl(`/blogs/${blog.slug}`);
+
+  const blogPostingJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: blog.title,
+    description: blog.excerpt,
+    image: absoluteUrl(blog.image),
+    datePublished: toIsoDate(blog.date),
+    articleSection: blog.category,
+    mainEntityOfPage: blogUrl,
+    url: blogUrl,
+    author: { "@type": "Organization", name: BUSINESS.name, url: absoluteUrl("/") },
+    publisher: { "@id": absoluteUrl("/#bakery") },
+  };
 
   return (
     <main>
+      <JsonLd data={blogPostingJsonLd} />
       <Navbar />
       <article className="px-[10.2%] pt-[38px] pb-20 max-[1000px]:px-[7%] max-[700px]:px-[7%] max-[700px]:pt-7 max-[700px]:pb-14">
         <nav className="mb-[45px] flex flex-wrap items-center gap-[10px] text-[10px] text-[#938680] max-[700px]:mb-[30px] max-[700px]:gap-[7px] max-[700px]:text-[9px] [&_a:hover]:text-rose-dark" aria-label="Breadcrumb">
@@ -62,18 +85,18 @@ export default async function BlogPage({ params }: BlogPageProps) {
           </p>
         </header>
 
-        <div className="relative mx-auto aspect-[1.9] max-w-[1040px] overflow-hidden bg-[#f1e8df] max-[700px]:aspect-[1.2]">
+        <div className="relative mx-auto flex h-[320px] w-full max-w-[1040px] items-center justify-center overflow-hidden sm:h-[520px] lg:h-[620px]">
           <Image
             src={blog.image}
             alt={blog.imageAlt}
             fill
             priority
-            sizes="(max-width: 700px) 90vw, 80vw"
-            className="object-cover"
+            sizes="(max-width: 700px) 90vw, (max-width: 1200px) 86vw, 1040px"
+            className="object-contain"
           />
         </div>
 
-        <div className="mx-auto mt-[42px] max-w-[680px] max-[700px]:mt-[30px]">
+        <div className="mx-auto mt-[30px] max-w-[680px] max-[700px]:mt-[30px]">
           {blog.sections.map((section) => (
             <section className="mb-[30px]" key={section.heading}>
               <h2 className="mb-[11px] font-[Georgia,Times_New_Roman,serif] text-[27px] font-normal tracking-[-.025em] max-[700px]:text-2xl">{section.heading}</h2>

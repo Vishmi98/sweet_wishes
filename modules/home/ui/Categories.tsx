@@ -35,7 +35,7 @@ const Categories = () => {
                 ))}
             </div>
             <div className="mt-[37px] flex items-center justify-between gap-3 border-t border-line pt-5 text-[10px] text-[#827671] max-[700px]:mt-[27px] max-[700px]:items-start max-[700px]:text-[9px]">
-                <span>Handmade in small batches, always.</span>
+                <span>Homemade in small batches, always.</span>
                 <Link className="button min-h-[41px] border border-[#d8c9c0] bg-transparent hover:bg-ink hover:text-white max-[700px]:min-h-[37px] max-[700px]:gap-2 max-[700px]:px-[10px] max-[700px]:text-[8px] max-[700px]:whitespace-nowrap" href="/shop">See all the good stuff <BsArrowRight /></Link>
             </div>
         </section>
